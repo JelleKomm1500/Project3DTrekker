@@ -5,7 +5,52 @@
     <meta charset="utf-8" />
     <title></title>
 </head>
-<body>
-    <p>Test</p>
+<body style="margin:0px;padding:0px;overflow:hidden;">
+    <script>
+        window.onload = function () {
+            var camera, scene, renderer;
+            var cameraControls;
+
+            function init() {
+                //create camera view, scene and renderer
+                camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+                cameraControls = new THREE.OrbitControls(camera);
+                camera.position.z = 75;
+                camera.position.y = 25;
+                camera.position.x = 75;
+                cameraControls.update();
+                scene = new THREE.Scene();
+
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(window.innerWidth, window.innerHeight + 5);
+                document.body.appendChild(renderer.domElement);
+
+                window.addEventListener('resize', onWindowResize, false);
+
+                scene.add(Skybox());
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                cameraControls.update();
+                renderer.render(scene, camera)
+            }
+            init();
+            animate();
+        }
+    </script>
+    <script src="js/three.min.js"></script>
+    <script src="js/MTLLoader.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/Skybox.js"></script>
 </body>
 </html>
+
