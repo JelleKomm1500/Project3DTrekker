@@ -1,5 +1,5 @@
 newmtl Tractor:Tractor_mat
-illum 4
+illum 2
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
