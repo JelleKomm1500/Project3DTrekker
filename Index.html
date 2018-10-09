@@ -29,6 +29,7 @@
                 window.addEventListener('resize', onWindowResize, false);
 
                 scene.add(Skybox());
+                scene.add(Bulldozer());
             }
 
             function onWindowResize() {
@@ -42,15 +43,19 @@
                 cameraControls.update();
                 renderer.render(scene, camera)
             }
+
             init();
             animate();
         }
     </script>
-    <script src="js/three.min.js"></script>
-    <script src="js/MTLLoader.js"></script>
-    <script src="js/OBJLoader.js"></script>
-    <script src="js/OrbitControls.js"></script>
+    <script src="three.min.js"></script>
+    <script src="MTLLoader.js"></script>
+    <script src="OBJLoader.js"></script>
+    <script src="OrbitControls.js"></script>
     <script src="js/Skybox.js"></script>
+    <script src="js/Bulldozer.js"></script>
+    <script src="js/ObjLoaderFunction.js"></script>
+
 </body>
 </html>
 
