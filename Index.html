@@ -11,6 +11,7 @@
             var camera, scene, renderer;
             var cameraControls;
 
+
             function init() {
                 //create camera view, scene and renderer
                 camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
@@ -28,16 +29,36 @@
 
                 window.addEventListener('resize', onWindowResize, false);
 
-                scene.add(Skybox());
-                scene.add(Trekker());
+                var testtrekker = Trekker();
+                testtrekker.position.y = 5;
+                scene.add(testtrekker);
+
+                var geometry = new THREE.PlaneGeometry(100, 100, 100);
+                var material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide });
+                var plane = new THREE.Mesh(geometry, material);
+                plane.rotateX(- Math.PI / 2);
+                scene.add(plane);
+                //scene.add(Skybox());
+                
+              
+
+                
                 scene.add(Light());
+
+
+
+
             }
+
+
 
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
+
+
 
             function animate() {
                 requestAnimationFrame(animate);
@@ -57,6 +78,7 @@
     <script src="js/Trekker.js"></script>
     <script src="js/ObjLoaderFunction.js"></script>
     <script src="js/Light.js"></script>
+    <script src="Raycaster.js"></script>
 
 </body>
 </html>
