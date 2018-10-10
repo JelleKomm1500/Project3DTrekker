@@ -35,9 +35,9 @@
 
                 window.addEventListener('resize', onWindowResize, false);
                 car = Trekker();
-                scene.add(Skybox());
+                scene.add(CircleSkyBox());
                 scene.add(car);
-                
+                scene.add(Plane());
                 scene.add(Light());
 
                
@@ -76,7 +76,7 @@
                     car.rotation.set(0, 0, 0);
                 }
 
-                var relativeCameraOffset = new THREE.Vector3(0, 40, 100);
+                var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
                 var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
                 camera.position.x = cameraOffset.x;
                 camera.position.y = cameraOffset.y;
@@ -88,7 +88,6 @@
             function render() {
                 renderer.render(scene, camera);
             }
-
 
             init();
             animate();
@@ -103,6 +102,7 @@
     <script src="js/ObjLoaderFunction.js"></script>
     <script src="js/Light.js"></script>
     <script src="js/threex.keyboardstate.js"></script>
+    <script src="js/Plane.js"></script>
 
 </body>
 </html>
