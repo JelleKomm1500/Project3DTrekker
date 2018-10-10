@@ -13,7 +13,7 @@
             var clock = new THREE.Clock();
             var car;
             var angle = 0;
-            var speed = 1.5;
+            var speed = 1;
 
             var keyboard = new THREEx.KeyboardState();
 
@@ -51,8 +51,9 @@
 
             function animate() {
                 requestAnimationFrame(animate);
+
                 var delta = clock.getDelta(); // seconds.
-                var moveDistance = 200 * delta; // 200 pixels per second
+                var moveDistance = 100 * delta; // 200 pixels per second
                 var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
 
                 if (keyboard.pressed("W"))
@@ -61,7 +62,6 @@
                     car.translateZ(moveDistance * speed);
 
                 // rotate left/right/up/down
-                var rotation_matrix = new THREE.Matrix4().identity();
                 if (keyboard.pressed("A"))
                     car.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotateAngle);
                 if (keyboard.pressed("D"))
@@ -76,7 +76,7 @@
                     car.rotation.set(0, 0, 0);
                 }
 
-                var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
+                var relativeCameraOffset = new THREE.Vector3(0, 40, 100);
                 var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
                 camera.position.x = cameraOffset.x;
                 camera.position.y = cameraOffset.y;
@@ -84,7 +84,6 @@
                 camera.lookAt(car.position);
 
                 render();
-                update();
             }
             function render() {
                 renderer.render(scene, camera);
