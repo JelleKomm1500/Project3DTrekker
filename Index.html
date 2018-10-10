@@ -12,7 +12,7 @@
             var cameraControls;
             var car;
             var angle = 0;
-            var speed = 2;
+            var speed = 0;
 
             keyboard = new THREEx.KeyboardState();
 
@@ -59,12 +59,12 @@
                     angle -= 0.1;
                 }
                 if (keyboard.pressed("s")) {
-                    car.position.z -= (Math.sin(-angle) * speed);
-                    car.position.x -= (Math.cos(-angle) * speed);
+                    car.position.z -= Math.sin(-angle);
+                    car.position.x -= Math.cos(-angle);
                 }
                 if (keyboard.pressed("w")) {
-                    car.position.z += (Math.sin(-angle) * speed);
-                    car.position.x += (Math.cos(-angle) * speed);
+                    car.position.z += Math.sin(-angle);
+                    car.position.x += Math.cos(-angle);
                 } 
                 renderer.render(scene, camera)
             }
