@@ -22,7 +22,7 @@
                 scene = new THREE.Scene();
                 //create camera view, scene and renderer
                 var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
-                var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+                var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
                 camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
                 scene.add(camera);
                 camera.position.set(0, 150, 400);
@@ -35,7 +35,8 @@
 
                 window.addEventListener('resize', onWindowResize, false);
                 car = Trekker();
-                scene.add(CircleSkyBox());
+                var skybox = CircleSkyBox();
+                scene.add(skybox);
                 scene.add(car);
                 scene.add(Plane());
                 scene.add(Light());
@@ -82,6 +83,8 @@
                 camera.position.y = cameraOffset.y;
                 camera.position.z = cameraOffset.z;
                 camera.lookAt(car.position);
+
+                
 
                 render();
             }
