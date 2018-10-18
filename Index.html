@@ -26,7 +26,7 @@
                 camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
                 scene.add(camera);
                 camera.position.set(0, 150, 400);
-                camera.lookAt(scene.position);	
+                camera.lookAt(scene.position);
 
                 renderer = new THREE.WebGLRenderer({ antialias: false });
                 renderer.setPixelRatio(window.devicePixelRatio);
@@ -36,12 +36,13 @@
                 window.addEventListener('resize', onWindowResize, false);
                 car = Trekker();
                 var skybox = CircleSkyBox();
+                skybox.position.y -= 225;
                 scene.add(skybox);
                 scene.add(car);
                 scene.add(Plane());
                 scene.add(Light());
 
-               
+
             }
 
             function onWindowResize() {
@@ -84,7 +85,7 @@
                 camera.position.z = cameraOffset.z;
                 camera.lookAt(car.position);
 
-                
+
 
                 render();
             }
@@ -101,6 +102,7 @@
     <script src="OBJLoader.js"></script>
     <script src="OrbitControls.js"></script>
     <script src="js/Skybox.js"></script>
+    <script src="js/CircleSkybox.js"></script>
     <script src="js/Trekker.js"></script>
     <script src="js/ObjLoaderFunction.js"></script>
     <script src="js/Light.js"></script>
