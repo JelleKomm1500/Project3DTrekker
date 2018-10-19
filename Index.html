@@ -25,13 +25,13 @@
                     return 0;
                 }
                 else {
-                    speed2 = speed / 10;
-                    if (speed2 > 1) {
+                    var speed2 = speed / 10;
+                    if (speed2 >= 1) {
                         return 1;
                     }
                     else
                     {
-                        return speed / 10;
+                        return speed2;
                     }
                 }
             }
@@ -131,10 +131,10 @@
                 }
 
                 var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
-                var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
-                camera.position.x = cameraOffset.x;
-                camera.position.y = cameraOffset.y;
-                camera.position.z = cameraOffset.z;
+                //var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
+                //camera.position.x = cameraOffset.x;
+                //camera.position.y = cameraOffset.y;
+                //camera.position.z = cameraOffset.z;
                 camera.lookAt(car.position);
 
 
