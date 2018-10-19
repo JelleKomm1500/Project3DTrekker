@@ -1,8 +1,7 @@
-﻿function Plane(renderer) {
+﻿function Plane() {
     var geometry = new THREE.PlaneGeometry(19999, 19999);
 
     var stoeptexture = new THREE.TextureLoader().load("textures/plane/grass1.jpg");
-    stoeptexture.anisotropy = renderer.getMaxAnisotropy();
     stoeptexture.wrapS = THREE.RepeatWrapping;
     stoeptexture.wrapT = THREE.RepeatWrapping;
     stoeptexture.repeat.set(750, 750);
