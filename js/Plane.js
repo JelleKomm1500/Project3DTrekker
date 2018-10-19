@@ -8,7 +8,7 @@
 
     var material = new THREE.MeshBasicMaterial({ map: stoeptexture, side: THREE.DoubleSide });
 
-    var plane = new THREE.Mesh(geometry, material);
+    var plane = new THREE.Mesh(geometry, material), 0;
     plane.rotateX(- Math.PI / 2);
     return plane;
 }

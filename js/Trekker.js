@@ -1,5 +1,5 @@
 ﻿function Trekker() {
-    var Trekkers = new THREE.Group();
+    var Trekkers = new THREE.Object3D();
 
     LoadOBJModel("objects/trekker/", "Tractor.obj", "objects/trekker/", "Tractor.mtl", (mesh) => {
         mesh.rotation.set(0, 3.14, 0)
