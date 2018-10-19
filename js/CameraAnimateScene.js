@@ -1,22 +1,11 @@
-﻿var camera, scene, renderer, stats;
-var cameraControls;
-var angle = 0;
-var speed = 1;
-var car, skybox, plane, light;
-
-window.onload = function () {
-    function load() {
-        car = Trekker();
-        skybox = CircleSkyBox();
-        plane = Plane();
-        light = Light();
-    }
-    load();
-}
-
-document.getElementById("startGame").onclick = function () {
+﻿document.getElementById("startGame").onclick = function () {
     var clock = new THREE.Clock();
     var keyboard = new THREEx.KeyboardState();
+    var camera, scene, renderer, stats;
+    var angle = 0;
+    var speed = 1;
+    var car;
+    car = Trekker();
 
     function hide() {
         var x = document.getElementById("main");
@@ -43,12 +32,11 @@ document.getElementById("startGame").onclick = function () {
         document.body.appendChild(renderer.domElement);
 
         window.addEventListener('resize', onWindowResize, false);
-        skybox.position.y -= 225;
-
-        scene.add(skybox);
+        //skybox.position.y -= 225;
+       // scene.add(skybox);
         scene.add(car);
-        scene.add(plane);
-        scene.add(light);
+        scene.add(Plane());
+        scene.add(Light());
 
 
     }
@@ -88,8 +76,6 @@ document.getElementById("startGame").onclick = function () {
         camera.position.y = cameraOffset.y;
         camera.position.z = cameraOffset.z;
         camera.lookAt(car.position);
-
-
 
         render();
     }
