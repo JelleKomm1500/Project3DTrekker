@@ -4,6 +4,7 @@
     LoadOBJModel("objects/tires/", "tires.obj", "objects/tires/", "tires.mtl", (mesh) => {
         mesh.scale.set(10, 10, 10);
         mesh.rotation.set(0, 3.14, 0)
+        mesh.position.set(0, 6, 0);
         Tires.add(mesh);
     })
     return Tires;
