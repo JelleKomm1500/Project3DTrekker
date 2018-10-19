@@ -34,12 +34,14 @@
                 document.body.appendChild(renderer.domElement);
 
                 window.addEventListener('resize', onWindowResize, false);
+                propsTires = tires();
                 car = Trekker();
                 var skybox = CircleSkyBox();
                 skybox.position.y -= 225;
                 //scene.add(DikkeRoad());
                 scene.add(skybox);
                 scene.add(car);
+                scene.add(propsTires);
                 scene.add(Plane(renderer));
                 scene.add(Light());
 
@@ -105,6 +107,7 @@
     <script src="js/Skybox.js"></script>
     <script src="js/CircleSkybox.js"></script>
     <script src="js/Trekker.js"></script>
+    <script src="js/tires.js"></script>
     <script src="js/DikkeRoad.js"></script>
     <script src="js/ObjLoaderFunction.js"></script>
     <script src="js/Light.js"></script>
