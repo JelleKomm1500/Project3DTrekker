@@ -12,26 +12,30 @@
             var cameraControls;
             var clock = new THREE.Clock();
             var car;
+            var car2;
+
             var angle = 0;
             var speed = 1;
             var testtrekker = Trekker();
             var geraakt = false;
+            car = Trekker();
+            car2 = Trekker();
+            car2.position.set(50, 0, 50);
+            car.position.set(50, 0, 50);
 
             var keyboard = new THREEx.KeyboardState();
 
-            var raycaster = new THREE.Raycaster();
-            var intersects;
             var direction = new THREE.Vector3();
             var far = new THREE.Vector3();
             var time = 0;
 
             var objects = [];
+            var testobject = Fence();
 
-         
 
 
             //muur maken waar trekker tegenaan rijdt.
-            var geometry = new THREE.PlaneGeometry(20, 20, 20);
+            var geometry = new THREE.PlaneGeometry(60, 60, 60);
             var material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide });
             var plane = new THREE.Mesh(geometry, material);
             plane.rotateY(- Math.PI / 2);
@@ -54,18 +58,22 @@
                 document.body.appendChild(renderer.domElement);
 
                 window.addEventListener('resize', onWindowResize, false);
-                car = Trekker();
                 //scene.add(CircleSkyBox());
                 scene.add(car);
-                //scene.add(Plane());
-                scene.add(Light());
+                scene.add(car2);
 
-                
-                scene.add(plane);
-                
+                scene.add(Plane());
+                scene.add(Light());
+                //scene.add(testobject);
+
+
+                //scene.add(plane);
+
 
                 objects.push(car);
-                objects.push(plane); 
+                //objects.push(plane);
+                objects.push(car2);
+                objects.push(testobject);
 
             }
 
@@ -109,25 +117,52 @@
                 camera.position.y = cameraOffset.y;
                 camera.position.z = cameraOffset.z;
                 camera.lookAt(car.position);
+
+                time += clock.getDelta();
                 renderer.render(scene, camera);
+
+
+                //kleur veranderen van het intersect object
+                var vec = new THREE.Vector3(10, 0, 0);
+                console.log(car.position);
+                console.log(vec);
+
+
+                var raycaster = new THREE.Raycaster(car.position, vec.normalize());
+                raycaster.far = 5;
+                var intersects;
+                console.log(raycaster);
+                intersects = raycaster.intersectObjects(objects, true);
+                console.log("SDSD" + intersects);
+
+                //een detectie is gedecteerd.
+                if (intersects.length > 0) {
+                    alert("biem");
+                    geraakt = true;
+                    car.position.x = -20;
+                    geraakt = false;
+
+                    var firstIntersectedObject = intersects[0];
+
+                    // this will give you the first intersected Object if there are multiple.
+                }
+
+
+
+                for (let i = 0; i < intersects.length; i++) {
+
+                    //intersects[i].object.childeren.position.y = 5;
+
+                }
 
             }
             function render() {
-                var vec = new THREE.Vector3(50, 0, 50);
 
-                time += clock.getDelta();
+
+
+
                 requestAnimationFrame(render);
-                raycaster.set(car.position, vec.normalize());
-                raycaster.far = far.subVectors(plane.position, car.position).length(); // comment this line to have an infinite ray
-                intersects = raycaster.intersectObjects(objects, true);
 
-                //kleur veranderen van het intersect object
-
-                for (let i = 0; i < intersects.length; i++) {
-                    intersects[i].object.material.color.set(Math.random() * 0xffffff);
-                    //intersects[i].object.childeren.position.y = 5;
-                    geraakt = true;
-                }
 
             }
 
@@ -145,6 +180,8 @@
     <script src="js/Light.js"></script>
     <script src="js/threex.keyboardstate.js"></script>
     <script src="js/Plane.js"></script>
+    <script src="js/Fence.js"></script>
+
     <script src="Raycaster.js"></script>
 
 
