@@ -1,4 +1,5 @@
 ﻿function Plane() {
+    var planegroup = new THREE.Group();
     var geometry = new THREE.PlaneGeometry(2000, 2000, 2000);
 
     var stoeptexture = new THREE.TextureLoader().load("textures/plane/grass1.jpg");
@@ -10,5 +11,7 @@
 
     var plane = new THREE.Mesh(geometry, material), 0;
     plane.rotateX(- Math.PI / 2);
-    return plane;
+
+    planegroup.add(plane);
+    return planegroup;
 }
