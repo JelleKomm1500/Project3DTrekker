@@ -68,26 +68,27 @@
 
             //controls = new THREE.OrbitControls(camera);
             box4 = new Physijs.BoxMesh(
-                new THREE.CubeGeometry(10, 10, 10),
-                new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
+                new THREE.CubeGeometry(10, 30, 10),
+                new THREE.MeshBasicMaterial({ color: 0x888888 }), 0,
+                { collision_flags: 0 }
             );
 
             var box5 = new Physijs.BoxMesh(
-                new THREE.CubeGeometry(10, 10, 10),
+                new THREE.CubeGeometry(10, 30, 10),
                 new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
             );
 
 
             //scene = new THREE.Scene();
             scene = new Physijs.Scene;
-            scene.setGravity(new THREE.Vector3(0, -10, 0));
+            scene.setGravity(new THREE.Vector3(0, -250, 0));
 
             scene.add(camera);
             
-            box4.position.set(-30, 5, 0);
+            box4.position.set(-30, 0, 0);
             
             car.position.x = -30;
-            car.position.z = -45;
+            car.position.z = 45 ;
 
             scene.add(box4);
             
@@ -188,19 +189,21 @@
             }
             if (keyboard.pressed("A")) {
                 car.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotateAngle);
-                //car.__dirtyPosition = true;
+                car.__dirtyRotation = true;
+                car.setCcdMotionThreshold(1);
             }
             if (keyboard.pressed("D")) {
                 car.rotateOnAxis(new THREE.Vector3(0, 1, 0), -rotateAngle);
-                //car.__dirtyPosition = true;
+                car.__dirtyRotation = true;
+
             }
             if (keyboard.pressed("R")) {
                 car.rotateOnAxis(new THREE.Vector3(1, 0, 0), rotateAngle);
-                //car.__dirtyPosition = true;
+                car.__dirtyRotation = true;
             }
             if (keyboard.pressed("F")) {
                 car.rotateOnAxis(new THREE.Vector3(1, 0, 0), -rotateAngle);
-                //car.__dirtyPosition = true;
+                car.position.x = -45;
             }   
             if (keyboard.pressed("Z")) {
                 car.position.set(0, 25.1, 0);

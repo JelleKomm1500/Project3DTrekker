@@ -7,7 +7,7 @@
     {
         var CollisionBox = new Physijs.BoxMesh(
             new THREE.BoxGeometry(5, 5, 5),
-            new THREE.MeshBasicMaterial({ color: 0xa7f442 }), 0
+            new THREE.MeshBasicMaterial({ color: 0xa7f442 }), 1000
         );
 
         return CollisionBox;
