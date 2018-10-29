@@ -1,6 +1,5 @@
 ﻿function Trekker(keuze) {
-    console.log("aangeroepen");
-
+    console.log("asdsadtrekkerrr");
     var trekkergroep = new THREE.Group();
     var boxgroep = new THREE.Group();
 

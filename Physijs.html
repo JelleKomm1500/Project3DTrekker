@@ -45,6 +45,7 @@
         var angle = 0;
         var speed = 5;
         var time = 0;
+        var car = Trekker("trekker");
 
 
         var box3 = new Physijs.BoxMesh(
@@ -62,8 +63,6 @@
             new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
         );
 
-        var xpos = 80;
-        var zpos = 0;
         init();
         animate();
 
@@ -101,7 +100,7 @@
             
             scene.add(box5);
 
-           
+            scene.add(car);
             
 
 
@@ -180,17 +179,10 @@
             var delta = clock.getDelta(); // seconds.
             var moveDistance = 100 * delta; // 200 pixels per second
             var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
-            var car = Trekker("box");
 
-            box5.position.y = 5;
-           //xpos -= 0.015;
-     
-           // console.log(xpos);
-            box5.position.x = xpos;
-            box5.__dirtyPosition = true;
 
             if (keyboard.pressed("W"))
-                .translateZ(-moveDistance * speed);
+                car.translateZ(-moveDistance * speed);
             //car.position.set(0, 5, zpos);
             //car.__dirtyPosition = true;
 
@@ -225,7 +217,6 @@
             renderer.render(scene, camera);
 
 
-            scene.add(car);
 
             //controls.update(deltaTime);
             scene.simulate(); // run physics
