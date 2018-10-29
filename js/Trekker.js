@@ -7,14 +7,10 @@
     {
         var CollisionBox = new Physijs.BoxMesh(
             new THREE.BoxGeometry(5, 5, 5),
-            new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
+            new THREE.MeshBasicMaterial({ color: 0xa7f442 }), 0
         );
 
-        CollisionBox.visible = true;
-        CollisionBox.__dirtyPosition = true;
-
-        boxgroep.add(CollisionBox);
-        return boxgroep;
+        return CollisionBox;
         
     }
     
@@ -36,7 +32,7 @@ function CollisionBox()
 
     var CollisionBox = new Physijs.BoxMesh(
         new THREE.BoxGeometry(10, 15, 15),
-        new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442 }), 1
     );
 
     CollisionBox.visible = true;

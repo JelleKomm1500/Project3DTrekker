@@ -43,34 +43,20 @@
         var clock = new THREE.Clock();
         var keyboard = new THREEx.KeyboardState();
         var angle = 0;
-        var speed = 5;
+        var speed = 1;
         var time = 0;
-        var car = Trekker("trekker");
-
-
-        var box3 = new Physijs.BoxMesh(
-            new THREE.CubeGeometry(10, 10, 10),
-            new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
-        );
-
-        var box4 = new Physijs.BoxMesh(
-            new THREE.CubeGeometry(10, 10, 10),
-            new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
-        );
-
-        var box5 = new Physijs.BoxMesh(
-            new THREE.CubeGeometry(10, 10, 10),
-            new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
-        );
-
+        var car;
+        var pos = -30;
+        var box4;
+        
         init();
         animate();
 
-        //scene.add(Mix());
+      
 
         function init() {
 
-            var testgroep = new THREE.Group();
+           car = Trekker("box");
 
             container = document.createElement('div');
             document.body.appendChild(container);
@@ -81,27 +67,35 @@
             camera.position.set(0, 150, 400);
 
             //controls = new THREE.OrbitControls(camera);
+            box4 = new Physijs.BoxMesh(
+                new THREE.CubeGeometry(10, 10, 10),
+                new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
+            );
 
-       
+            var box5 = new Physijs.BoxMesh(
+                new THREE.CubeGeometry(10, 10, 10),
+                new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
+            );
 
-            // scene
 
             //scene = new THREE.Scene();
             scene = new Physijs.Scene;
             scene.setGravity(new THREE.Vector3(0, -10, 0));
-            camera.lookAt(scene.position);
 
             scene.add(camera);
+            
+            //box4.position.set(30, 5, 0);
+            box4.position.x = -45;
+            car.position.x = -30;
+            car.position.z = -45;
 
-
-
-            box4.position.set(30, 5, 0);
             scene.add(box4);
             
             scene.add(box5);
 
             scene.add(car);
-            
+            camera.lookAt(scene.position);
+
 
 
             var ground_material = Physijs.createMaterial(
@@ -120,7 +114,7 @@
             );
             ground.position.y = -5;
 
-            ground.receiveShadow = true;
+            //ground.receiveShadow = true;
             scene.add(ground);
             
             scene.add(Light());
@@ -168,40 +162,48 @@
 
             requestAnimationFrame(animate);
             render();
-
-   
-
+            
         }
 
         function render() {
-            var deltaTime = clock.getDelta();
+            //pos += 0.025;
+            box4.position.set(pos, 0, 0);
+            box4.__dirtyPosition = true;
+
+           // var deltaTime = clock.getDelta();
             requestAnimationFrame(render);
             var delta = clock.getDelta(); // seconds.
             var moveDistance = 100 * delta; // 200 pixels per second
             var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
 
 
-            if (keyboard.pressed("W"))
+            if (keyboard.pressed("W")) {
                 car.translateZ(-moveDistance * speed);
-            //car.position.set(0, 5, zpos);
-            //car.__dirtyPosition = true;
+                //positie updaten
+                car.__dirtyPosition = true;
+            }
 
-            if (keyboard.pressed("S"))
-                //zpos = moveDistance * speed;
+            if (keyboard.pressed("S")) {
+
                 car.translateZ(moveDistance * speed);
-            //car.position.set(0, 5, zpos);
-            //car.__dirtyPosition = true;
-
-            // rotate left/right/up/down
-            if (keyboard.pressed("A"))
+                car.__dirtyPosition = true;
+            }
+            if (keyboard.pressed("A")) {
                 car.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotateAngle);
-            if (keyboard.pressed("D"))
+                //car.__dirtyPosition = true;
+            }
+            if (keyboard.pressed("D")) {
                 car.rotateOnAxis(new THREE.Vector3(0, 1, 0), -rotateAngle);
-            if (keyboard.pressed("R"))
+                //car.__dirtyPosition = true;
+            }
+            if (keyboard.pressed("R")) {
                 car.rotateOnAxis(new THREE.Vector3(1, 0, 0), rotateAngle);
-            if (keyboard.pressed("F"))
+                //car.__dirtyPosition = true;
+            }
+            if (keyboard.pressed("F")) {
                 car.rotateOnAxis(new THREE.Vector3(1, 0, 0), -rotateAngle);
-
+                //car.__dirtyPosition = true;
+            }   
             if (keyboard.pressed("Z")) {
                 car.position.set(0, 25.1, 0);
                 car.rotation.set(0, 0, 0);
