@@ -84,8 +84,8 @@
 
             scene.add(camera);
             
-            //box4.position.set(30, 5, 0);
-            box4.position.x = -45;
+            box4.position.set(-30, 5, 0);
+            
             car.position.x = -30;
             car.position.z = -45;
 
@@ -166,9 +166,7 @@
         }
 
         function render() {
-            //pos += 0.025;
-            box4.position.set(pos, 0, 0);
-            box4.__dirtyPosition = true;
+            
 
            // var deltaTime = clock.getDelta();
             requestAnimationFrame(render);
