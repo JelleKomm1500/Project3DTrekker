@@ -1,2 +1,43 @@
 ﻿body {
+    background: url(../img/achtergrond.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+.title {
+    padding-top: 125px;
+    padding-bottom: 80px;
+    font-family: 'Kraash Black', sans-serif;
+    font-weight: bold;
+    color: navy;
+}
+ul {
+    list-style-type: none;
+}
+.btnList{
+    padding: 10px;
+}
+
+p.button5 {
+    padding: 0.46em 1.6em;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Kraash black',sans-serif;
+    font-size: 30px;
+    color: #FFFFFF;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    transition: all 0.15s;
+}
+
+    p.button5:hover {
+        text-shadow: 0 0 2em rgba(255,255,255,1);
+        color: gold;
+        border-color: #000000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+@media all and (max-width:30em) {
+     a.button5 {
+        display: block;
+        margin: 0.4em auto;
+    }
 }

@@ -26,7 +26,7 @@
         }
     }
     function hide() {
-        var x = document.getElementById("main");
+        var x = document.getElementById("wrapper");
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
@@ -51,10 +51,6 @@
 
         window.addEventListener('resize', onWindowResize, false);
         car = Trekker();
-        //var skybox = CircleSkyBox();
-        //skybox.position.y -= 225;
-        //scene.add(DikkeRoad());
-        //scene.add(skybox);
         scene.add(car);
         scene.add(Plane(renderer));
         scene.add(Light());

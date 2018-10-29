@@ -3,29 +3,31 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/hover-min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Menu</title>
 </head>
-<body style="margin:0px;padding:0px;overflow:hidden;">
-    <div class="wrapper">
-        <div id="menu" class="main">
-            <div id="main">
-                <h1>Trekkerje no</h1>
-                <ul>
-                    <li><a href="#" class="button play" id="startGame">Start Game</a></li>
-                </ul>
-            </div>
-        </div>
+<body style="margin:0px;padding:0px;overflow:hidden;" id="menu">
+    <div class="wrapper" id="wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h1 class="title">TREKKER WRECKER</h1>
+                            <ul>
+                                <li class="btnList"><p href="#" class="button5 hvr-bob" id="startGame">Start Game</p></li>
+                                <li class="btnList"><p href="#" class="button5 hvr-bob" id="startGame">Multiplayer</p></li>
+                            </ul>
+                        </div>
+                </div>
+                </div>
     </div>
-    <script src="js/Animatebackground.js"></script>
-    <script src="js/CameraAnimateScene.js"></script>
     <script src="three.min.js"></script>
-    <script src="MTLLoader.js"></script>
     <script src="OBJLoader.js"></script>
-    <script src="OrbitControls.js"></script>
-    <script src="js/CircleSkybox.js"></script>
-    <script src="js/Trekker.js"></script>
-    <script src="js/DikkeRoad.js"></script>
+    <script src="MTLLoader.js"></script>
+    <script src="js/CameraAnimateScene.js"></script>
     <script src="js/ObjLoaderFunction.js"></script>
+    <script src="js/Trekker.js"></script>
+    <script src="OrbitControls.js"></script>
     <script src="js/Light.js"></script>
     <script src="js/threex.keyboardstate.js"></script>
     <script src="js/Plane.js"></script>
