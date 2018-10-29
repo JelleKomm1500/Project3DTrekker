@@ -71,7 +71,7 @@
             scene = new Physijs.Scene;
             scene.setGravity(new THREE.Vector3(0, -150, 0));
 
-           car = Trekker("trekker");
+           car = Trekker("box");
 
             container = document.createElement('div');
             document.body.appendChild(container);
@@ -171,18 +171,22 @@
         //
 
         function animate() {
-            console.log(car.position.z);
+            box4.addEventListener('collision', function (other_object, relative_velocity, relative_rotation, contact_normal) {
+
+                speed = 0.8;
+            });
             requestAnimationFrame(animate);
             //console.log(car.position);
             var delta = clock.getDelta(); // seconds.
             var moveDistance = 50 * delta; // 100 pixels per second
             var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
-            if (speed > 1) {
+            if (speed > 1) {            
                 car.translateZ(-moveDistance * speed);
-                car._dirtyPosition = true;
+                car.__dirtyPosition = true;
             }
             if (backwardspeed > 1) {
                 car.translateZ(moveDistance * speed);
+                car.__dirtyPosition = true;
 
             }
             if (keyboard.pressed("W")) {
@@ -216,8 +220,10 @@
             // rotate left/right/up/down
             if (keyboard.pressed("A"))
                 car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), rotateAngle);
+            car.__dirtyRotation = true;
             if (keyboard.pressed("D"))
                 car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), -rotateAngle);
+            car.__dirtyRotation = true;
 
             if (keyboard.pressed("Z")) {
                 car.position.set(0, 25.1, 0);
