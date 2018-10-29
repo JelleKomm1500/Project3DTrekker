@@ -26,22 +26,16 @@
     <script src="js/Plane.js"></script>
 
     <script>
-
-
+        
         'use strict';
 
         Physijs.scripts.worker = 'js/physijs_worker.js';
         Physijs.scripts.ammo = 'ammo.js';
 
-        var initScene, render, renderer, scene, camera, box, floor;
+        var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
         var container; 
-        var camera, scene, controls, renderer;
-        var mouseX = 0, mouseY = 0;
-
-        var windowHalfX = window.innerWidth / 2;
-        var windowHalfY = window.innerHeight / 2;
+       
         var clock = new THREE.Clock();
-        var keyboard = new THREEx.KeyboardState();
         var angle = 0;
         var basespeed = 1;
         var speed = 1;
@@ -50,9 +44,8 @@
         var backwardspeed = 1;
         var time = 0;
         var car;
-        var pos = -30;
         var box4;
-        var boolstop = false;
+        //var boolstop = false;
         var keyboard = new THREEx.KeyboardState();
         function CalcAngle() {
             if (speed / 10 <= 0.1) {
@@ -69,17 +62,16 @@
             }
         }
 
-        init();
-        animate();
+       
 
       
 
         function init() {
             //scene = new THREE.Scene();
             scene = new Physijs.Scene;
-            scene.setGravity(new THREE.Vector3(0, -250, 0));
+            scene.setGravity(new THREE.Vector3(0, -150, 0));
 
-           car = Trekker("box");
+           car = Trekker("trekker");
 
             container = document.createElement('div');
             document.body.appendChild(container);
@@ -92,7 +84,7 @@
             //controls = new THREE.OrbitControls(camera);
             box4 = new Physijs.BoxMesh(
                 new THREE.CubeGeometry(1, 30, 1),
-                new THREE.MeshBasicMaterial({ color: 0x888888 }), 0,
+                new THREE.MeshBasicMaterial({ color: 0x888888 }), 1,
                 { collision_flags: 0 }
             );
             
@@ -108,8 +100,10 @@
             box4.position.set(-30, 0, 0);
             
             car.position.x = -30;
+            car.position.y = 30;
+
             car.position.z = 45 ;
-            car.setCcdMotionThreshold(1);
+           // car.setCcdMotionThreshold(1);
 
             scene.add(box4);
             
@@ -134,7 +128,7 @@
                 ground_material,
                 0 // mass
             );
-            ground.position.y = -5;
+            ground.position.y = -15;
 
             //ground.receiveShadow = true;
             scene.add(ground);
@@ -147,11 +141,7 @@
                 console.log(item, loaded, total);
             };
 
-
-
-
-
-
+            
             scene.add(Light());
 
             //
@@ -181,14 +171,15 @@
         //
 
         function animate() {
-
+            console.log(car.position.z);
             requestAnimationFrame(animate);
-
+            //console.log(car.position);
             var delta = clock.getDelta(); // seconds.
             var moveDistance = 50 * delta; // 100 pixels per second
             var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
             if (speed > 1) {
                 car.translateZ(-moveDistance * speed);
+                car._dirtyPosition = true;
             }
             if (backwardspeed > 1) {
                 car.translateZ(moveDistance * speed);
@@ -197,6 +188,7 @@
             if (keyboard.pressed("W")) {
                 if (backwardspeed > 1) {
                     backwardspeed = backwardspeed * 0.9;
+
                 }
                 if (!(speed > maxspeed)) {
                     speed = speed * 1.01;
@@ -233,10 +225,10 @@
             }
 
             var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
-            //var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
-            //camera.position.x = cameraOffset.x;
-            //camera.position.y = cameraOffset.y;
-            //camera.position.z = cameraOffset.z;
+            var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
+            camera.position.x = cameraOffset.x;
+            camera.position.y = cameraOffset.y;
+            camera.position.z = cameraOffset.z;
             camera.lookAt(car.position);
 
             render();
@@ -267,7 +259,8 @@
         }
 
 
-
+        init();
+        animate();
 
     </script>
 
