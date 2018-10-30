@@ -29,6 +29,8 @@
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
         scene.add(camera);
+        var controls = new THREE.OrbitControls(camera);
+
         camera.position.set(0, 150, 400);
         camera.lookAt(scene.position);
 
@@ -43,7 +45,7 @@
             { collision_flags: 0 }
         );
 
-        scene.add(box4);
+        //wwscene.add(box4);
 
         window.addEventListener('resize', onWindowResize, false);
 
@@ -52,7 +54,7 @@
 
         scene.add(Plane(renderer));
         scene.add(Light());
-
+        scene.add(Arena());
 
     }
 
