@@ -23,18 +23,20 @@
     <script src="js/Light.js"></script>
     <script src="js/threex.keyboardstate.js"></script>
     <script src="js/Fence.js"></script>
+    <script src="js/ObjectLoader.js"></script>
+
     <script src="js/Plane.js"></script>
 
     <script>
-        
+
         'use strict';
 
         Physijs.scripts.worker = 'js/physijs_worker.js';
         Physijs.scripts.ammo = 'ammo.js';
 
         var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
-        var container; 
-       
+        var container;
+
         var clock = new THREE.Clock();
         var angle = 0;
         var basespeed = 1;
@@ -63,16 +65,16 @@
             }
         }
 
-       
 
-      
+
+
 
         function init() {
             //scene = new THREE.Scene();
             scene = new Physijs.Scene;
-            scene.setGravity(new THREE.Vector3(0, -150, 0));
+            scene.setGravity(new THREE.Vector3(0, -250, 0));
 
-           car = Trekker();
+            car = Trekker();
 
             container = document.createElement('div');
             document.body.appendChild(container);
@@ -89,6 +91,15 @@
                 { collision_flags: 0 }
             );
 
+            var ramp = new Physijs.BoxMesh(
+                new THREE.CubeGeometry(100, 30, 1),
+                new THREE.MeshBasicMaterial({ color: 0x888888 }), 0,
+                { collision_flags: 0 }
+            );
+            ramp.rotation.x = 2; 
+            ramp.position.set(0,-10,0)
+
+            scene.add(ramp);
 
 
             var box5 = new Physijs.BoxMesh(
@@ -96,21 +107,25 @@
                 new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
             );
 
-    
+
+            // BEGIN Clara.io JSON loader code
+            var objectLoader = new THREE.ObjectLoader();
+            objectLoader.load("objects/jsontsje.json", function (obj) {
+                scene.add(obj);
+            });
+            // END Clara.io JSON loader code
 
 
-           
             scene.add(camera);
-            
+
             box4.position.set(-60, 0, 0);
-            
             car.position.x = -50;
 
-            car.position.z = 45 ;
-           // car.setCcdMotionThreshold(1);
+            car.position.z = 45;
+            // car.setCcdMotionThreshold(1);
 
-            scene.add(box4);
-            
+            //scene.add(box4);
+
 
             scene.add(car);
             camera.lookAt(scene.position);
@@ -118,7 +133,7 @@
 
 
             var ground_material = Physijs.createMaterial(
-                new THREE.MeshLambertMaterial({color: 0xffffff}),
+                new THREE.MeshLambertMaterial({ color: 0xffffff }),
                 .8, // high friction
                 .4 // low restitution
             );
@@ -135,16 +150,18 @@
 
             //ground.receiveShadow = true;
             scene.add(ground);
-            
+
             scene.add(Light());
-        
-            
+
+           
+
+
             var manager = new THREE.LoadingManager();
             manager.onProgress = function (item, loaded, total) {
                 console.log(item, loaded, total);
             };
 
-            
+
             scene.add(Light());
 
             //
@@ -160,7 +177,7 @@
 
         }
 
-        
+
 
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
@@ -169,13 +186,13 @@
 
         }
 
-     
+
 
         //
 
         function animate() {
             car.setCcdMotionThreshold(10);
-           car.setCcdSweptSphereRadius(0.2);
+            car.setCcdSweptSphereRadius(0.2);
 
 
             box4.addEventListener('collision', function (other_object, relative_velocity, relative_rotation, contact_normal) {
@@ -186,7 +203,7 @@
             var delta = clock.getDelta(); // seconds.
             var moveDistance = 50 * delta; // 100 pixels per second
             var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
-            if (speed > 1) {            
+            if (speed > 1) {
                 car.translateZ(-moveDistance * speed);
                 car.__dirtyPosition = true;
             }
@@ -238,30 +255,30 @@
 
             var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
             var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
-            camera.position.x = cameraOffset.x;
-            camera.position.y = cameraOffset.y;
-            camera.position.z = cameraOffset.z;
-            camera.lookAt(car.position);
+            //camera.position.x = cameraOffset.x;
+            //camera.position.y = cameraOffset.y;
+            //camera.position.z = cameraOffset.z;
+            //camera.lookAt(car.position);
 
             render();
-            
+
         }
 
         function render() {
 
 
             // var deltaTime = clock.getDelta();
-          
+
             renderer.render(scene, camera);
 
-         
 
-        
+
+
 
             //controls.update(deltaTime);
             scene.simulate(); // run physics
 
-           // camera.lookAt(scene.position);
+            // camera.lookAt(scene.position);
 
             //renderer.render(scene, camera);
 
