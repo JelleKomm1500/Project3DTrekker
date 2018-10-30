@@ -44,6 +44,7 @@
         var backwardspeed = 1;
         var time = 0;
         var car;
+        var car2;
         var box4;
         //var boolstop = false;
         var keyboard = new THREEx.KeyboardState();
@@ -69,7 +70,7 @@
         function init() {
             //scene = new THREE.Scene();
             scene = new Physijs.Scene;
-            scene.setGravity(new THREE.Vector3(0, -50, 0));
+            scene.setGravity(new THREE.Vector3(0, -150, 0));
 
            car = Trekker();
 
@@ -87,11 +88,18 @@
                 new THREE.MeshBasicMaterial({ color: 0x888888 }), 0,
                 { collision_flags: 0 }
             );
-            
+
+
+
             var box5 = new Physijs.BoxMesh(
                 new THREE.CubeGeometry(10, 30, 10),
                 new THREE.MeshBasicMaterial({ color: 0x888888 }), 1
             );
+
+            car2 = Trekker();
+
+            car2.position.set(50, 0, 20);
+            scene.add(car2);
 
 
            
@@ -246,10 +254,7 @@
           
             renderer.render(scene, camera);
 
-            //box4.addEventListener('collision', function (other_object, relative_velocity, relative_rotation, contact_normal) {
-                
-
-            //});
+         
 
         
 
