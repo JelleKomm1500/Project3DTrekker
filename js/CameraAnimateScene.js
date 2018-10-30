@@ -6,33 +6,11 @@
     var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
     var container;
     var cameraControls;
-    var clock = new THREE.Clock();
-    var car;
-    var angle = 0;
-    var basespeed = 1;
-    var speed = 1;
-    var acceleration = 0;
-    var maxspeed = 10;
-    var backwardspeed = 1;
-    var time = 0;
-    var car;
     var box4;
+    const Trekker1 = new Trekkerobj(10);
 
     var keyboard = new THREEx.KeyboardState();
-    function CalcAngle() {
-        if (speed / 10 <= 0.1) {
-            return 0;
-        }
-        else {
-            var speed2 = speed / 10;
-            if (speed2 >= 1) {
-                return 1;
-            }
-            else {
-                return speed2;
-            }
-        }
-    }
+    
     function hide() {
         var x = document.getElementById("wrapper");
         if (x.style.display === "none") {
@@ -68,8 +46,10 @@
         scene.add(box4);
 
         window.addEventListener('resize', onWindowResize, false);
-        car = Trekker();
-        scene.add(car);
+
+        scene.add(Trekker1.GetModel());
+        console.log(Trekker1);
+
         scene.add(Plane(renderer));
         scene.add(Light());
 
@@ -84,74 +64,15 @@
 
     function animate() {
         requestAnimationFrame(animate);
+        Trekker1.Controls(keyboard);
 
-        box4.addEventListener('collision', function (other_object, relative_velocity, relative_rotation, contact_normal) {
-            speed = 0.8;
-        });
-
-        var delta = clock.getDelta(); // seconds.
-        var moveDistance = 50 * delta; // 100 pixels per second
-        var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
-        if (speed > 1) {
-            car.translateZ(-moveDistance * speed);
-            car.__dirtyPosition = true;
-
-        }
-        if (backwardspeed > 1) {
-            car.translateZ(moveDistance * speed);
-            car.__dirtyPosition = true;
-
-
-        }
-        if (keyboard.pressed("W")) {
-            if (backwardspeed > 1) {
-                backwardspeed = backwardspeed * 0.9;
-            }
-            if (!(speed > maxspeed)) {
-                speed = speed * 1.01;
-            }
-
-        }
-        else if (speed > basespeed) {
-            speed = speed * 0.99;
-        }
-
-        if (keyboard.pressed("S")) {
-            if (speed > 1) {
-                speed = speed * 0.90;
-            }
-            else if (!(backwardspeed > (maxspeed / 3))) {
-                backwardspeed = backwardspeed * 1.01;
-            }
-
-        }
-
-        else if (backwardspeed > 1) {
-            backwardspeed = backwardspeed * 0.99;
-        }
-
-        // rotate left/right/up/down
-        if (keyboard.pressed("A"))
-            car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), rotateAngle);
-        car.__dirtyRotation = true;
-
-        if (keyboard.pressed("D"))
-            car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), -rotateAngle);
-        car.__dirtyRotation = true;
-
-        if (keyboard.pressed("Z")) {
-            car.position.set(0, 25.1, 0);
-            car.rotation.set(0, 0, 0);
-        }
 
         var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
         //var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
         //camera.position.x = cameraOffset.x;
         //camera.position.y = cameraOffset.y;
         //camera.position.z = cameraOffset.z;
-        camera.lookAt(car.position);
-
-
+        camera.lookAt((Trekker1.GetModel()).position);
 
         render();
     }
