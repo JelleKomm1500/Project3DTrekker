@@ -1,11 +1,19 @@
-﻿body {
+﻿@font-face {
+    font-family: 'kraash_blackregular';
+    src: url('/fonts/kraash_black-webfont.woff2') format('woff2'), url('/fonts/kraash_black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
     background: url(../img/achtergrond.jpg) no-repeat center center fixed;
     background-size: cover;
 }
+
 .title {
     padding-top: 125px;
     padding-bottom: 80px;
-    font-family: 'Kraash Black', sans-serif;
+    font-family: 'kraash_blackregular', sans-serif;
     font-weight: bold;
     color: navy;
 }
@@ -20,7 +28,7 @@ p.button5 {
     padding: 0.46em 1.6em;
     text-align: center;
     text-decoration: none;
-    font-family: 'Kraash black',sans-serif;
+    font-family: 'kraash_blackregular', Fallback, sans-serif;
     font-size: 30px;
     color: #FFFFFF;
     text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
