@@ -1,5 +1,10 @@
 ﻿document.getElementById("startGame").onclick = function () {
-    var camera, scene, renderer, stats;
+    'use strict';
+
+    Physijs.scripts.worker = 'js/physijs_worker.js';
+    Physijs.scripts.ammo = 'ammo.js';
+    var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
+    var container;
     var cameraControls;
     var clock = new THREE.Clock();
     var car;
@@ -9,6 +14,9 @@
     var acceleration = 0;
     var maxspeed = 10;
     var backwardspeed = 1;
+    var time = 0;
+    var car;
+    var box4;
 
     var keyboard = new THREEx.KeyboardState();
     function CalcAngle() {
@@ -35,7 +43,9 @@
     }
     function init() {
         //Create scene
-        scene = new THREE.Scene();
+        scene = new Physijs.Scene;
+        scene.setGravity(new THREE.Vector3(0, -250, 0));
+
         //create camera view, scene and renderer
         var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
@@ -48,6 +58,14 @@
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight + 5);
         document.body.appendChild(renderer.domElement);
+
+       box4 = new Physijs.BoxMesh(
+            new THREE.CubeGeometry(100, 30, 10),
+            new THREE.MeshBasicMaterial({ color: 0x888888 }), 0,
+            { collision_flags: 0 }
+        );
+
+        scene.add(box4);
 
         window.addEventListener('resize', onWindowResize, false);
         car = Trekker();
@@ -67,14 +85,22 @@
     function animate() {
         requestAnimationFrame(animate);
 
+        box4.addEventListener('collision', function (other_object, relative_velocity, relative_rotation, contact_normal) {
+            speed = 0.8;
+        });
+
         var delta = clock.getDelta(); // seconds.
         var moveDistance = 50 * delta; // 100 pixels per second
         var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
         if (speed > 1) {
             car.translateZ(-moveDistance * speed);
+            car.__dirtyPosition = true;
+
         }
         if (backwardspeed > 1) {
             car.translateZ(moveDistance * speed);
+            car.__dirtyPosition = true;
+
 
         }
         if (keyboard.pressed("W")) {
@@ -107,8 +133,11 @@
         // rotate left/right/up/down
         if (keyboard.pressed("A"))
             car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), rotateAngle);
+        car.__dirtyRotation = true;
+
         if (keyboard.pressed("D"))
             car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), -rotateAngle);
+        car.__dirtyRotation = true;
 
         if (keyboard.pressed("Z")) {
             car.position.set(0, 25.1, 0);
@@ -128,6 +157,8 @@
     }
     function render() {
         renderer.render(scene, camera);
+        scene.simulate(); // run physics
+
     }
     hide();
     init();

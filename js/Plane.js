@@ -1,5 +1,4 @@
 ﻿function Plane(renderer) {
-    var geometry = new THREE.PlaneGeometry(19999, 19999);
 
     var stoeptexture = new THREE.TextureLoader().load("textures/plane/grass1.jpg");
     stoeptexture.anisotropy = renderer.getMaxAnisotropy();
@@ -7,9 +6,22 @@
     stoeptexture.wrapT = THREE.RepeatWrapping;
     stoeptexture.repeat.set(750, 750);
 
-    var material = new THREE.MeshBasicMaterial({ map: stoeptexture, side: THREE.DoubleSide });
 
-    var plane = new THREE.Mesh(geometry, material);
-    plane.rotateX(- Math.PI / 2);
-    return plane;
+    var ground_material = Physijs.createMaterial(
+        new THREE.MeshBasicMaterial({ map: stoeptexture, side: THREE.DoubleSide }),
+        .8, // high friction
+        .4 // low restitution
+    );
+
+    var ground = new Physijs.BoxMesh(
+        new THREE.BoxGeometry(19999, 19999, 10),
+        //new THREE.PlaneGeometry(50, 50),
+        ground_material,
+        0 // mass
+    );
+
+    ground.rotateX(- Math.PI / 2);
+    ground.position.y = -15;
+
+    return ground;
 }
