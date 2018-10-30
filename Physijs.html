@@ -39,7 +39,7 @@
         var angle = 0;
         var basespeed = 1;
         var speed = 1;
-        var acceleration = 0;
+        var acceleration = 2;
         var maxspeed = 10;
         var backwardspeed = 1;
         var time = 0;
@@ -71,7 +71,7 @@
             scene = new Physijs.Scene;
             scene.setGravity(new THREE.Vector3(0, -50, 0));
 
-           car = Trekker("box");
+           car = Trekker();
 
             container = document.createElement('div');
             document.body.appendChild(container);
@@ -100,14 +100,13 @@
             box4.position.set(-60, 0, 0);
             
             car.position.x = -30;
-            car.position.y = 30;
+            car.position.y = 0;
 
             car.position.z = 45 ;
            // car.setCcdMotionThreshold(1);
 
             scene.add(box4);
             
-            scene.add(box5);
 
             scene.add(car);
             camera.lookAt(scene.position);
