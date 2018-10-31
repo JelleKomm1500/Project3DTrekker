@@ -81,7 +81,7 @@
         //camera.position.x = cameraOffset.x;
         //camera.position.y = cameraOffset.y;
         //camera.position.z = cameraOffset.z;
-        camera.lookAt((Trekker1.GetModel()).position);
+        //camera.lookAt((Trekker1.GetModel()).position);
 
         render();
     }
