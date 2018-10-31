@@ -7,8 +7,8 @@
     var container;
     var cameraControls;
     var box4;
-    const Trekker1 = new Trekkerobj(10, 1.01, "W", "A", "D", "S");
-    const Trekker2 = new Trekkerobj(10, 1.01, "U", "H", "K", "J");
+    const Trekker1 = new Trekkerobj(11, 1.01, "W", "A", "D", "S");
+    const Trekker2 = new Trekkerobj(11, 1.01, "U", "H", "K", "J");
 
     var test = Trekker1.GetModel();
     test.position.set(0, 50, 0);

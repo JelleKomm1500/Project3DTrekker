@@ -10,6 +10,9 @@
     this.GetModel = function () {
         return car;
     }
+    function GetMovespeed() {
+        return (speed - 1);
+    }
     function CalcAngle() {
         if (speed / 10 <= 0.1) {
             return 0;
@@ -31,7 +34,7 @@
         var moveDistance = 50 * delta; // 100 pixels per second
         var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
         if (speed > 1) {
-            car.translateZ(-moveDistance * speed);
+            car.translateZ(-moveDistance * GetMovespeed());
             car.__dirtyPosition = true;
 
             car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
@@ -87,7 +90,6 @@
         else if (keyboard.pressed(right)) {
             if (testklokkie > -1) {
                 testklokkie -= 0.1;
-                console.log("jasd");
             }
         }
 
