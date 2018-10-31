@@ -36,7 +36,7 @@
         var controls = new THREE.OrbitControls(camera);
 
         camera.position.set(0, 150, 400);
-        camera.lookAt(scene.position);
+        //camera.lookAt(scene.position);
 
         renderer = new THREE.WebGLRenderer({ antialias: false });
         renderer.setPixelRatio(window.devicePixelRatio);

@@ -37,7 +37,11 @@
             car.translateZ(-moveDistance * GetMovespeed());
             car.__dirtyPosition = true;
 
-            car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
+            var klokkie2 = testklokkie;
+            if (GetMovespeed() < 1) {
+                klokkie2 = testklokkie * (GetMovespeed());
+            }            
+            car.rotateOnAxis(new THREE.Vector3(0, klokkie2, 0), rotateAngle);
             speed = speed * 0.996;
             car.__dirtyRotation = true;
 
