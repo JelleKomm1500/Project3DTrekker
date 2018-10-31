@@ -20,7 +20,7 @@
                 return 1.5;
             }
             else {
-                return speed2*1.5;
+                return speed2 * 1.5;
             }
         }
     }
@@ -71,22 +71,26 @@
         // rotate left/right/up/down
         if (keyboard.pressed(left)) {
             if (testklokkie < 1) {
-                testklokkie += 0.01;
+                testklokkie += 0.1;
             }
             car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
             speed = speed * 0.996;
             car.__dirtyRotation = true;
         }
-            
+
 
         if (keyboard.pressed(right)) {
-            car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), -rotateAngle);
+            if (testklokkie > -1) {
+                testklokkie -= 0.1;
+                console.log("jasd");
+            }
+            car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
             speed = speed * 0.996;
             car.__dirtyRotation = true;
         }
-            
 
-        
+
+
     }
 
 

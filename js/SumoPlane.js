@@ -14,7 +14,7 @@
     );
 
     var ground = new Physijs.BoxMesh(
-        new THREE.BoxGeometry(200, 200, 10),
+        new THREE.BoxGeometry(200000, 200000, 10),
         //new THREE.PlaneGeometry(50, 50),
         ground_material,
         0 // mass
