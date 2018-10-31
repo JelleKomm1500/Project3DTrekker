@@ -10,6 +10,9 @@
     const Trekker1 = new Trekkerobj(10, 1.01, "W", "A", "D", "S");
     const Trekker2 = new Trekkerobj(10, 1.01, "U", "H", "K", "J");
 
+    var test = Trekker1.GetModel();
+    test.position.set(0, 50, 0);
+
     var keyboard = new THREEx.KeyboardState();
     
     function hide() {
@@ -55,10 +58,10 @@
         test.position.z += 20;
         scene.add(test);
 
-        scene.add(Plane(renderer));
+        //scene.add(Plane(renderer));
         scene.add(Light());
-        scene.add(Arena());
-
+        //scene.add(Arena());
+        scene.add(SumoArena());
     }
 
     function onWindowResize() {
