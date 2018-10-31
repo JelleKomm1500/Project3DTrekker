@@ -34,10 +34,18 @@
             car.translateZ(-moveDistance * speed);
             car.__dirtyPosition = true;
 
+            car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
+            speed = speed * 0.996;
+            car.__dirtyRotation = true;
+
         }
         if (backwardspeed > 1) {
             car.translateZ(moveDistance * backwardspeed);
             car.__dirtyPosition = true;
+
+            car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
+            speed = speed * 0.996;
+            car.__dirtyRotation = true;
 
 
         }
@@ -73,20 +81,21 @@
             if (testklokkie < 1) {
                 testklokkie += 0.1;
             }
-            car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
-            speed = speed * 0.996;
-            car.__dirtyRotation = true;
         }
 
 
-        if (keyboard.pressed(right)) {
+        else if (keyboard.pressed(right)) {
             if (testklokkie > -1) {
                 testklokkie -= 0.1;
                 console.log("jasd");
             }
-            car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
-            speed = speed * 0.996;
-            car.__dirtyRotation = true;
+        }
+
+        else if (testklokkie < 0) {
+            testklokkie += 0.1;
+        }
+        else if (testklokkie > 0) {
+            testklokkie -= 0.1;
         }
 
 
