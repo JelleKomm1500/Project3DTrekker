@@ -7,7 +7,8 @@
     var container;
     var cameraControls;
     var box4;
-    const Trekker1 = new Trekkerobj(10);
+    const Trekker1 = new Trekkerobj(10, 1.01, "W", "A", "D", "S");
+    const Trekker2 = new Trekkerobj(10, 1.01, "U", "H", "K", "J");
 
     var keyboard = new THREEx.KeyboardState();
     
@@ -50,7 +51,9 @@
         window.addEventListener('resize', onWindowResize, false);
 
         scene.add(Trekker1.GetModel());
-        console.log(Trekker1);
+        var test = Trekker2.GetModel();
+        test.position.z += 20;
+        scene.add(test);
 
         scene.add(Plane(renderer));
         scene.add(Light());
@@ -67,6 +70,7 @@
     function animate() {
         requestAnimationFrame(animate);
         Trekker1.Controls(keyboard);
+        Trekker2.Controls(keyboard);
 
 
         var relativeCameraOffset = new THREE.Vector3(0, 50, 200);

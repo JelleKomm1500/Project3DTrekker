@@ -1,9 +1,11 @@
-﻿function Trekkerobj(maxspeed) {
+﻿function Trekkerobj(maxspeed, accspeed, forward, left, right, back) {
 
     this.maxspeed = maxspeed;
+    this.accspeed = accspeed;
     var clock = new THREE.Clock();
     var speed = 1;
     var backwardspeed = 1;
+    var testklokkie = 0;
     var car = Trekker();
     this.GetModel = function () {
         return car;
@@ -15,10 +17,10 @@
         else {
             var speed2 = speed / 10;
             if (speed2 >= 1) {
-                return 1;
+                return 1.5;
             }
             else {
-                return speed2;
+                return speed2*1.5;
             }
         }
     }
@@ -34,29 +36,29 @@
 
         }
         if (backwardspeed > 1) {
-            car.translateZ(moveDistance * speed);
+            car.translateZ(moveDistance * backwardspeed);
             car.__dirtyPosition = true;
 
 
         }
-        if (keyboard.pressed("W")) {
+        if (keyboard.pressed(forward)) {
             if (backwardspeed > 1) {
-                backwardspeed = backwardspeed * 0.9;
+                backwardspeed = backwardspeed * 0.99;
             }
             if (!(speed > maxspeed)) {
-                speed = speed * 1.01;
+                speed = speed * accspeed;
             }
 
         }
         else if (speed > 1) {
-            speed = speed * 0.99;
+            speed = speed * 0.98;
         }
 
-        if (keyboard.pressed("S")) {
+        if (keyboard.pressed(back)) {
             if (speed > 1) {
-                speed = speed * 0.90;
+                speed = speed * 0.98;
             }
-            else if (!(backwardspeed > (maxspeed / 3))) {
+            else if (!(backwardspeed > (5))) {
                 backwardspeed = backwardspeed * 1.01;
             }
 
@@ -67,18 +69,22 @@
         }
 
         // rotate left/right/up/down
-        if (keyboard.pressed("A"))
-            car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), rotateAngle);
-        car.__dirtyRotation = true;
-
-        if (keyboard.pressed("D"))
-            car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), -rotateAngle);
-        car.__dirtyRotation = true;
-
-        if (keyboard.pressed("Z")) {
-            car.position.set(0, 25.1, 0);
-            car.rotation.set(0, 0, 0);
+        if (keyboard.pressed(left)) {
+            if (testklokkie < 1) {
+                testklokkie += 0.01;
+            }
+            car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
+            speed = speed * 0.996;
+            car.__dirtyRotation = true;
         }
+            
+
+        if (keyboard.pressed(right)) {
+            car.rotateOnAxis(new THREE.Vector3(0, CalcAngle(), 0), -rotateAngle);
+            speed = speed * 0.996;
+            car.__dirtyRotation = true;
+        }
+            
 
         
     }
