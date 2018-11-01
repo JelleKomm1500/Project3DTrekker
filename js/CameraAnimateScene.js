@@ -10,6 +10,14 @@
     const Trekker1 = new Trekkerobj(11, 1.01, "W", "A", "D", "S");
     const Trekker2 = new Trekkerobj(11, 1.01, "U", "H", "K", "J");
 
+	    var scorelijst = [0, 0];   
+    var speler1 = Trekker1.GetModel();
+    var speler2 = Trekker2.GetModel();
+
+    var scene1 = ScoreUpdate("2", 0);
+    var scene2 = ScoreUpdate("1", 0);
+	
+	
     const Rots1 = new SteenObject(0, 0, 0);
     const Rots2 = new SteenObject(30, 0, 0);
     const Rots3 = new SteenObject(60, 0, 0);
@@ -54,11 +62,13 @@
         var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
-        scene.add(camera);
         var controls = new THREE.OrbitControls(camera);
+        scene.add(scene1);
+        scene.add(scene2);
 
         camera.position.set(0, 150, 400);
         //camera.lookAt(scene.position);
+        scene.add(camera);
 
         renderer = new THREE.WebGLRenderer({ antialias: false });
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -71,7 +81,6 @@
             { collision_flags: 0 }
         );
 
-        //wwscene.add(box4);
 
         window.addEventListener('resize', onWindowResize, false);
 
@@ -132,6 +141,28 @@
         Trekker1.Controls(keyboard);
         Trekker2.Controls(keyboard);
 
+		 speler1.__dirtyPosition = true;
+        speler2.__dirtyPosition = true;
+
+        if (speler1.position.y <= -200)
+        {
+            scene.remove(scene1);
+            scorelijst[0] += 100;
+            scene1 = ScoreUpdate("2", scorelijst[0]);
+            scene.add(scene1);
+            speler1.position.set(-0, 20, 20);
+        }
+        
+        if (speler2.position.y <= -200)
+        {
+            scene.remove(scene2);
+            scorelijst[1] += 100;
+            scene2 = ScoreUpdate("1", scorelijst[1]);
+            scene.add(scene2);
+            speler2.position.set(20, 20, 0);
+        }
+		
+		
         var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
         //var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
         //camera.position.x = cameraOffset.x;
