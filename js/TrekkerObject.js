@@ -13,6 +13,10 @@
     function GetMovespeed() {
         return (speed - 1);
     }
+
+    function GetBackMovespeed() {
+        return (backwardspeed - 1);
+    }
     function CalcAngle() {
         if (speed / 10 <= 0.1) {
             return 0;
@@ -28,8 +32,6 @@
         }
     }
     this.Controls = function (keyboard) {
-
-
         var delta = clock.getDelta(); // seconds.
         var moveDistance = 50 * delta; // 100 pixels per second
         var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
@@ -47,8 +49,13 @@
 
         }
         if (backwardspeed > 1) {
-            car.translateZ(moveDistance * backwardspeed);
+            car.translateZ(moveDistance * GetBackMovespeed());
             car.__dirtyPosition = true;
+
+            var klokkie2 = testklokkie;
+            if (GetBackMovespeed() < 1) {
+                klokkie2 = testklokkie * (GetBackMovespeed());
+            }     
 
             car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
             speed = speed * 0.996;

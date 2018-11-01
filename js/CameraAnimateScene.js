@@ -10,8 +10,30 @@
     const Trekker1 = new Trekkerobj(11, 1.01, "W", "A", "D", "S");
     const Trekker2 = new Trekkerobj(11, 1.01, "U", "H", "K", "J");
 
+    const Rots1 = new SteenObject(0, 0, 0);
+    const Rots2 = new SteenObject(30, 0, 0);
+    const Rots3 = new SteenObject(60, 0, 0);
+    const Rots4 = new SteenObject(90, 0, 0);
+
+    const Rots5 = new SteenObject(0, 0, 30);
+    const Rots6 = new SteenObject(30, 0, 30);
+    const Rots7 = new SteenObject(60, 0, 30);
+    const Rots8 = new SteenObject(90, 0, 30);
+
+    const Rots9 = new SteenObject(0, 0, 60);
+    const Rots10 = new SteenObject(30, 0, 60);
+    const Rots11 = new SteenObject(60, 0, 60);
+    const Rots12 = new SteenObject(90, 0, 60);
+
+    const Rots13 = new SteenObject(0, 0, 90);
+    const Rots14 = new SteenObject(30, 0, 90);
+    const Rots15 = new SteenObject(60, 0, 90);
+    const Rots16 = new SteenObject(90, 0, 90);
+
     var test = Trekker1.GetModel();
-    test.position.set(0, 50, 0);
+    test.position.set(30, 15, 60);
+    var test2 = Trekker2.GetModel();
+    test2.position.set(90, 15, 90);
 
     var keyboard = new THREEx.KeyboardState();
     
@@ -54,14 +76,49 @@
         window.addEventListener('resize', onWindowResize, false);
 
         scene.add(Trekker1.GetModel());
-        var test = Trekker2.GetModel();
-        test.position.z += 20;
-        scene.add(test);
+        scene.add(Trekker2.GetModel());
 
-        //scene.add(Plane(renderer));
+        scene.add(Rots1.GetModel());
+        Rots1.Fly();
+        scene.add(Rots2.GetModel());
+        Rots2.Fly();
+        scene.add(Rots3.GetModel());
+        Rots3.Fly();
+        scene.add(Rots4.GetModel());
+        Rots4.Fly();
+
+        scene.add(Rots5.GetModel());
+        Rots5.Fly();
+        scene.add(Rots6.GetModel());
+        Rots6.Fly();
+        scene.add(Rots7.GetModel());
+        Rots7.Fly();
+        scene.add(Rots8.GetModel());
+        Rots8.Fly();
+
+        scene.add(Rots9.GetModel());
+        Rots9.Fly();
+        scene.add(Rots10.GetModel());
+        Rots10.Fly();
+        scene.add(Rots11.GetModel());
+        Rots11.Fly();
+        scene.add(Rots12.GetModel());
+        Rots12.Fly();
+
+        scene.add(Rots13.GetModel());
+        Rots13.Fly();
+        scene.add(Rots14.GetModel());
+        Rots14.Fly();
+        scene.add(Rots15.GetModel());
+        Rots15.Fly();
+        scene.add(Rots16.GetModel());
+        Rots16.Fly();
+
+        
+        
+        scene.add(CircleSkyBox());
+
         scene.add(Light());
-        //scene.add(Arena());
-        scene.add(SumoArena());
     }
 
     function onWindowResize() {
@@ -74,7 +131,6 @@
         requestAnimationFrame(animate);
         Trekker1.Controls(keyboard);
         Trekker2.Controls(keyboard);
-
 
         var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
         //var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
