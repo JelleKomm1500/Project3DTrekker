@@ -16,27 +16,11 @@
 
     var scene1 = ScoreUpdate("2", 0);
     var scene2 = ScoreUpdate("1", 0);
-	
-	
-    const Rots1 = new SteenObject(0, 0, 0);
-    const Rots2 = new SteenObject(30, 0, 0);
-    const Rots3 = new SteenObject(60, 0, 0);
-    const Rots4 = new SteenObject(90, 0, 0);
 
-    const Rots5 = new SteenObject(0, 0, 30);
-    const Rots6 = new SteenObject(30, 0, 30);
-    const Rots7 = new SteenObject(60, 0, 30);
-    const Rots8 = new SteenObject(90, 0, 30);
-
-    const Rots9 = new SteenObject(0, 0, 60);
-    const Rots10 = new SteenObject(30, 0, 60);
-    const Rots11 = new SteenObject(60, 0, 60);
-    const Rots12 = new SteenObject(90, 0, 60);
-
-    const Rots13 = new SteenObject(0, 0, 90);
-    const Rots14 = new SteenObject(30, 0, 90);
-    const Rots15 = new SteenObject(60, 0, 90);
-    const Rots16 = new SteenObject(90, 0, 90);
+    const Rotsen = new RotsArray(0, 0, 0);
+    Rotsen.Push(30, 0, 0);
+    Rotsen.Push(60, 0, 0);
+    Rotsen.Push(90, 0, 0);
 
     var test = Trekker1.GetModel();
     test.position.set(30, 15, 60);
@@ -87,46 +71,15 @@
         scene.add(Trekker1.GetModel());
         scene.add(Trekker2.GetModel());
 
-        scene.add(Rots1.GetModel());
-        Rots1.Fly();
-        scene.add(Rots2.GetModel());
-        Rots2.Fly();
-        scene.add(Rots3.GetModel());
-        Rots3.Fly();
-        scene.add(Rots4.GetModel());
-        Rots4.Fly();
-
-        scene.add(Rots5.GetModel());
-        Rots5.Fly();
-        scene.add(Rots6.GetModel());
-        Rots6.Fly();
-        scene.add(Rots7.GetModel());
-        Rots7.Fly();
-        scene.add(Rots8.GetModel());
-        Rots8.Fly();
-
-        scene.add(Rots9.GetModel());
-        Rots9.Fly();
-        scene.add(Rots10.GetModel());
-        Rots10.Fly();
-        scene.add(Rots11.GetModel());
-        Rots11.Fly();
-        scene.add(Rots12.GetModel());
-        Rots12.Fly();
-
-        scene.add(Rots13.GetModel());
-        Rots13.Fly();
-        scene.add(Rots14.GetModel());
-        Rots14.Fly();
-        scene.add(Rots15.GetModel());
-        Rots15.Fly();
-        scene.add(Rots16.GetModel());
-        Rots16.Fly();
-
-        
+        var array = Rotsen.GetArray();
+        for (var i = 0; i < (array.length); i++)
+        {
+            scene.add(array[i].GetModel());
+            array[i].Fly();
+        }
+     
         
         scene.add(CircleSkyBox());
-
         scene.add(Light());
     }
 
