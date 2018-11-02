@@ -1,5 +1,6 @@
-﻿function Trekkerobj(maxspeed, accspeed, forward, left, right, back) {
+﻿function Trekkerobj(name, maxspeed, accspeed, forward, left, right, back) {
 
+    this.name = name;
     this.maxspeed = maxspeed;
     this.accspeed = accspeed;
     var clock = new THREE.Clock();
@@ -7,6 +8,15 @@
     var backwardspeed = 1;
     var testklokkie = 0;
     var car = Trekker();
+    var lastTouchedBy;
+
+    this.ChangeTouched = function (name) {
+        lastTouchedBy = name;
+    }
+
+    this.GetName = function () {
+        return name;
+    }
     this.GetModel = function () {
         return car;
     }

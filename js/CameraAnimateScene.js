@@ -7,25 +7,27 @@
     var container;
     var cameraControls;
     var box4;
-    const Trekker1 = new Trekkerobj(11, 1.01, "W", "A", "D", "S");
-    const Trekker2 = new Trekkerobj(11, 1.01, "U", "H", "K", "J");
+    //const Trekker1 = new Trekkerobj(11, 1.01, "W", "A", "D", "S");
+    //const Trekker2 = new Trekkerobj(11, 1.01, "U", "H", "K", "J");
 
 	    var scorelijst = [0, 0];   
-    var speler1 = Trekker1.GetModel();
-    var speler2 = Trekker2.GetModel();
+    //var speler1 = Trekker1.GetModel();
+    //var speler2 = Trekker2.GetModel();
 
     var scene1 = ScoreUpdate("2", 0);
     var scene2 = ScoreUpdate("1", 0);
 
-    const Rotsen = new RotsArray(0, 0, 0);
+    const Rotsen = new ObjectArray("rots");
+    Rotsen.Push(0, 0, 0);
     Rotsen.Push(30, 0, 0);
     Rotsen.Push(60, 0, 0);
     Rotsen.Push(90, 0, 0);
 
-    var test = Trekker1.GetModel();
-    test.position.set(30, 15, 60);
-    var test2 = Trekker2.GetModel();
-    test2.position.set(90, 15, 90);
+    const Trekkers = new ObjectArray("trekker");
+    Trekkers.Push("Speler1", 11, 1.01, "W", "A", "D", "S");
+    Trekkers.Push("Speler2", 11, 1.01, "U", "H", "K", "J");
+
+
 
     var keyboard = new THREEx.KeyboardState();
     
@@ -68,16 +70,25 @@
 
         window.addEventListener('resize', onWindowResize, false);
 
-        scene.add(Trekker1.GetModel());
-        scene.add(Trekker2.GetModel());
+        //scene.add(Trekker1.GetModel());
+        //scene.add(Trekker2.GetModel());
 
-        var array = Rotsen.GetArray();
-        for (var i = 0; i < (array.length); i++)
+        var rArray = Rotsen.GetArray();
+        for (var i = 0; i < (rArray.length); i++)
         {
-            scene.add(array[i].GetModel());
-            array[i].Fly();
+            scene.add(rArray[i].GetModel());
+            rArray[i].Fly();
         }
-     
+
+        var tArray = Trekkers.GetArray();
+        for (var i = 0; i < (tArray.length); i++) {
+            var car = tArray[i].GetModel();
+            scene.add(car);
+            var i2 = i * 30;
+            car.position.set(i, 15, 0);
+
+        }
+
         
         scene.add(CircleSkyBox());
         scene.add(Light());
@@ -91,29 +102,29 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        Trekker1.Controls(keyboard);
-        Trekker2.Controls(keyboard);
+        //Trekker1.Controls(keyboard);
+        //Trekker2.Controls(keyboard);
 
-		 speler1.__dirtyPosition = true;
-        speler2.__dirtyPosition = true;
+		 //speler1.__dirtyPosition = true;
+   //     speler2.__dirtyPosition = true;
 
-        if (speler1.position.y <= -200)
-        {
-            scene.remove(scene1);
-            scorelijst[0] += 100;
-            scene1 = ScoreUpdate("2", scorelijst[0]);
-            scene.add(scene1);
-            speler1.position.set(-0, 20, 20);
-        }
+   //     if (speler1.position.y <= -200)
+   //     {
+   //         scene.remove(scene1);
+   //         scorelijst[0] += 100;
+   //         scene1 = ScoreUpdate("2", scorelijst[0]);
+   //         scene.add(scene1);
+   //         speler1.position.set(-0, 20, 20);
+   //     }
         
-        if (speler2.position.y <= -200)
-        {
-            scene.remove(scene2);
-            scorelijst[1] += 100;
-            scene2 = ScoreUpdate("1", scorelijst[1]);
-            scene.add(scene2);
-            speler2.position.set(20, 20, 0);
-        }
+   //     if (speler2.position.y <= -200)
+   //     {
+   //         scene.remove(scene2);
+   //         scorelijst[1] += 100;
+   //         scene2 = ScoreUpdate("1", scorelijst[1]);
+   //         scene.add(scene2);
+   //         speler2.position.set(20, 20, 0);
+   //     }
 		
 		
         var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
