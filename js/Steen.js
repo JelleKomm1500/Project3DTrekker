@@ -19,6 +19,5 @@
     rots.position.x = x;
     rots.position.z = z;
     rots.position.y = y;
-    rots.Mass
     return rots;
 }

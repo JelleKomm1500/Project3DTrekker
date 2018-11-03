@@ -4,32 +4,31 @@
     Physijs.scripts.worker = 'js/physijs_worker.js';
     Physijs.scripts.ammo = 'ammo.js';
     var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
-    var container;
-    var cameraControls;
-    var box4;
-    //const Trekker1 = new Trekkerobj(11, 1.01, "W", "A", "D", "S");
-    //const Trekker2 = new Trekkerobj(11, 1.01, "U", "H", "K", "J");
+    var timer = new THREE.Clock();
+    timer.start()
 
-	    var scorelijst = [0, 0];   
-    //var speler1 = Trekker1.GetModel();
-    //var speler2 = Trekker2.GetModel();
-
-    var scene1 = ScoreUpdate("2", 0);
-    var scene2 = ScoreUpdate("1", 0);
+    var test = 0;
 
     const Rotsen = new ObjectArray("rots");
-    Rotsen.Push(0, 0, 0);
-    Rotsen.Push(30, 0, 0);
-    Rotsen.Push(60, 0, 0);
-    Rotsen.Push(90, 0, 0);
 
+    for (var i = 150; i > -150; i-=30) {
+        for (var i2 = 10; i2 > -10; i2--) {
+            Rotsen.Push((i2 * 30), -10, i);
+        }
+    }
+
+    
     const Trekkers = new ObjectArray("trekker");
     Trekkers.Push("Speler1", 11, 1.01, "W", "A", "D", "S");
     Trekkers.Push("Speler2", 11, 1.01, "U", "H", "K", "J");
 
+    const Scorebord = new Scoreboard();
+    Scorebord.LoadPlayers(Trekkers.GetArray());
 
 
     var keyboard = new THREEx.KeyboardState();
+
+    var Scoreafdruk = Scorebord.DrawScoreboard(timer.getElapsedTime());
     
     function hide() {
         var x = document.getElementById("wrapper");
@@ -49,9 +48,6 @@
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
         var controls = new THREE.OrbitControls(camera);
-        scene.add(scene1);
-        scene.add(scene2);
-
         camera.position.set(0, 150, 400);
         //camera.lookAt(scene.position);
         scene.add(camera);
@@ -61,17 +57,13 @@
         renderer.setSize(window.innerWidth, window.innerHeight + 5);
         document.body.appendChild(renderer.domElement);
 
-       box4 = new Physijs.BoxMesh(
-            new THREE.CubeGeometry(100, 30, 10),
-            new THREE.MeshBasicMaterial({ color: 0x888888 }), 0,
-            { collision_flags: 0 }
+        //geen idee waarom maar door dit vallen de trekkers niet door de grond
+        var rots = new Physijs.BoxMesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshFaceMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 0
         );
-
-
+        scene.add(rots);
         window.addEventListener('resize', onWindowResize, false);
-
-        //scene.add(Trekker1.GetModel());
-        //scene.add(Trekker2.GetModel());
 
         var rArray = Rotsen.GetArray();
         for (var i = 0; i < (rArray.length); i++)
@@ -85,13 +77,13 @@
             var car = tArray[i].GetModel();
             scene.add(car);
             var i2 = i * 30;
-            car.position.set(i, 15, 0);
-
+            car.position.set(50, 30, 50);
         }
+        //scene.add(CircleSkyBox());
+        scene.add(Light());
 
         
-        scene.add(CircleSkyBox());
-        scene.add(Light());
+        camera.add(Scoreafdruk);
     }
 
     function onWindowResize() {
@@ -102,44 +94,34 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        //Trekker1.Controls(keyboard);
-        //Trekker2.Controls(keyboard);
+        var afgerond = parseInt(timer.getElapsedTime(), 10);
+        if (afgerond > test) {
+            camera.remove(Scoreafdruk);
+            Scoreafdruk = Scorebord.DrawScoreboard(afgerond);
+            camera.add(Scoreafdruk);
+            test += 1;
 
-		 //speler1.__dirtyPosition = true;
-   //     speler2.__dirtyPosition = true;
+            if (afgerond % 10 === 0) {
+                console.log("jaaaa");
+                var array = Rotsen.GetArray();
+                var random = Math.floor(Math.random() * array.length);
+                console.log(random);
+                array[random].Fall();
+            }
 
-   //     if (speler1.position.y <= -200)
-   //     {
-   //         scene.remove(scene1);
-   //         scorelijst[0] += 100;
-   //         scene1 = ScoreUpdate("2", scorelijst[0]);
-   //         scene.add(scene1);
-   //         speler1.position.set(-0, 20, 20);
-   //     }
+        }
         
-   //     if (speler2.position.y <= -200)
-   //     {
-   //         scene.remove(scene2);
-   //         scorelijst[1] += 100;
-   //         scene2 = ScoreUpdate("1", scorelijst[1]);
-   //         scene.add(scene2);
-   //         speler2.position.set(20, 20, 0);
-   //     }
-		
-		
-        var relativeCameraOffset = new THREE.Vector3(0, 50, 200);
-        //var cameraOffset = relativeCameraOffset.applyMatrix4(car.matrixWorld);
-        //camera.position.x = cameraOffset.x;
-        //camera.position.y = cameraOffset.y;
-        //camera.position.z = cameraOffset.z;
-        //camera.lookAt((Trekker1.GetModel()).position);
-
+        var tArray = Trekkers.GetArray();
+        for (var i = 0; i < (tArray.length); i++) {
+            var car = tArray[i];
+            console.log(car.GetModel().position.y);
+            car.Controls(keyboard);
+        }
         render();
     }
     function render() {
         renderer.render(scene, camera);
         scene.simulate(); // run physics
-
     }
     hide();
     init();
