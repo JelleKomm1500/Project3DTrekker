@@ -15,7 +15,7 @@
             speler1score = score;
             var textGeometry = new THREE.TextGeometry("Speler 1: " + speler1score, {
                 font: font,
-                size: 20,
+                size: 5,
                 height: 0.2,
                 curveSegments: 12,
             });  
@@ -28,7 +28,7 @@
             speler2score = score;   
             var textGeometry2 = new THREE.TextGeometry("Speler 2: " + speler2score, {
                 font: font,
-                size: 20,
+                size: 5,
                 height: 2,
                 curveSegments: 12,
             });

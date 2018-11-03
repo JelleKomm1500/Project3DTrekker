@@ -16,8 +16,10 @@
 
     var scene1 = ScoreUpdate("2", 0);
     var scene2 = ScoreUpdate("1", 0);
-	
-	
+
+    var power;
+    var testvar;
+
     const Rots1 = new SteenObject(0, 0, 0);
     const Rots2 = new SteenObject(30, 0, 0);
     const Rots3 = new SteenObject(60, 0, 0);
@@ -122,11 +124,11 @@
         Rots15.Fly();
         scene.add(Rots16.GetModel());
         Rots16.Fly();
+         power = PowerUps(10, 100, 10, 15)
 
-        
+        scene.add(power);
         
         scene.add(CircleSkyBox());
-
         scene.add(Light());
     }
 
@@ -173,6 +175,19 @@
         render();
     }
     function render() {
+
+        speler1.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
+            if (other_object.id == power.id) {
+                alert("biem");
+
+
+            }
+
+
+        });
+
+
+
         renderer.render(scene, camera);
         scene.simulate(); // run physics
 

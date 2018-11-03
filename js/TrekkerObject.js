@@ -1,4 +1,4 @@
-﻿function Trekkerobj(maxspeed, accspeed, forward, left, right, back) {
+﻿function Trekkerobj(maxspeed, accspeed, forward, left, right, back, naam) {
 
     this.maxspeed = maxspeed;
     this.accspeed = accspeed;
