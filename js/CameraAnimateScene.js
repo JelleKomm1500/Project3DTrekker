@@ -58,11 +58,13 @@
         document.body.appendChild(renderer.domElement);
 
         //geen idee waarom maar door dit vallen de trekkers niet door de grond
-        var rots = new Physijs.BoxMesh(
+        var test32 = new Physijs.BoxMesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshFaceMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 0
         );
-        scene.add(rots);
+        test32.position.x = 10000;
+        scene.add(test32);
+
         window.addEventListener('resize', onWindowResize, false);
 
         var rArray = Rotsen.GetArray();
@@ -75,11 +77,11 @@
         var tArray = Trekkers.GetArray();
         for (var i = 0; i < (tArray.length); i++) {
             var car = tArray[i].GetModel();
-            scene.add(car);
             var i2 = i * 30;
-            car.position.set(50, 30, 50);
+            car.position.set(i2, 30, i2);
+            scene.add(car);            
         }
-        //scene.add(CircleSkyBox());
+        scene.add(CircleSkyBox());
         scene.add(Light());
 
         

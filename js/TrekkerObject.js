@@ -10,6 +10,11 @@
     var car = Trekker();
     var lastTouchedBy;
 
+    //car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
+    //    if (other_object.id==)
+
+    //})
+
     this.ChangeTouched = function (name) {
         lastTouchedBy = name;
     }
@@ -48,6 +53,11 @@
         if (speed > 1) {
             car.translateZ(-moveDistance * GetMovespeed());
             car.__dirtyPosition = true;
+
+
+            var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
+            var force_vector = new THREE.Vector3(0, 0, (GetMovespeed() * -10)).applyMatrix4(rotation_matrix);
+            car.applyCentralImpulse(force_vector);
 
             var klokkie2 = testklokkie;
             if (GetMovespeed() < 1) {
