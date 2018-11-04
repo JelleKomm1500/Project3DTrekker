@@ -94,6 +94,37 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
+    function RotsVal() {
+
+        var array = Rotsen.GetArray();
+        var random = Math.floor(Math.random() * array.length);
+        if (array[random].CheckFlying()) {
+            array[random].Fall();
+        }
+        else RotsVal();
+        
+    }
+
+    function FindRots() {
+
+        var array = Rotsen.GetArray();
+        var random = Math.floor(Math.random() * array.length);
+        console.log(array[random].CheckFlying());
+        if (array[random].CheckFlying()) {
+            var x = ((array[random]).GetModel()).position.x;
+            var z = ((array[random]).GetModel()).position.z;
+            var locatie = [x, 30, z]; 
+            console.log(locatie);
+            return locatie;
+
+        }
+        else {
+            FindRots();
+        }
+
+    }
+
+
     function animate() {
         requestAnimationFrame(animate);
         var afgerond = parseInt(timer.getElapsedTime(), 10);
@@ -104,11 +135,7 @@
             test += 1;
 
             if (afgerond % 10 === 0) {
-                console.log("jaaaa");
-                var array = Rotsen.GetArray();
-                var random = Math.floor(Math.random() * array.length);
-                console.log(random);
-                array[random].Fall();
+                RotsVal();
             }
 
         }
@@ -116,8 +143,19 @@
         var tArray = Trekkers.GetArray();
         for (var i = 0; i < (tArray.length); i++) {
             var car = tArray[i];
-            console.log(car.GetModel().position.y);
             car.Controls(keyboard);
+            if ((car.GetModel().position.y) < -100) {
+                var test150 = FindRots();
+                (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
+                (car.GetModel()).__dirtyPosition = true;
+
+                for (var i2 = 0; i2 < (tArray.length); i2++) {
+                    var car2 = tArray[i2];
+                    if ( (car2.GetModel().id) == (car.GetTouched()) ) {
+                        Scorebord.UpdateScore(car2.GetName());
+                    }
+                }
+            }
         }
         render();
     }

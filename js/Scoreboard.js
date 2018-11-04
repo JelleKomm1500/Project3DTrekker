@@ -6,6 +6,7 @@
     this.LoadPlayers = function (trekkers) {
         for (var i = 0; i < (trekkers.length); i++) {
             var name = trekkers[i].GetName();
+            trekkers[i].loadOthers(trekkers);
             var eendArray = [name, 0];
             tweedArray.push(eendArray);
         }

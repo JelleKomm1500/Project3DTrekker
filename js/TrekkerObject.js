@@ -8,15 +8,27 @@
     var backwardspeed = 1;
     var testklokkie = 0;
     var car = Trekker();
+    var otherCars;
     var lastTouchedBy;
 
-    //car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
-    //    if (other_object.id==)
+    car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
 
-    //})
+        for (var i = 0; i < (otherCars.length); i++) {
+            if (other_object.id == (otherCars[i].GetModel()).id) {
+                lastTouchedBy = (otherCars[i].GetModel()).id;
+                console.log((otherCars[i].GetModel()).id);
+            }
 
-    this.ChangeTouched = function (name) {
-        lastTouchedBy = name;
+        }
+        
+    })
+
+    this.GetTouched = function () {
+        return lastTouchedBy;
+    }
+
+    this.loadOthers = function (trekkers) {
+        otherCars = trekkers;
     }
 
     this.GetName = function () {
@@ -55,9 +67,9 @@
             car.__dirtyPosition = true;
 
 
-            var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
-            var force_vector = new THREE.Vector3(0, 0, (GetMovespeed() * -10)).applyMatrix4(rotation_matrix);
-            car.applyCentralImpulse(force_vector);
+            //var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
+            //var force_vector = new THREE.Vector3(0, 0, (GetMovespeed() * -10)).applyMatrix4(rotation_matrix);
+            //car.applyCentralImpulse(force_vector);
 
             var klokkie2 = testklokkie;
             if (GetMovespeed() < 1) {
