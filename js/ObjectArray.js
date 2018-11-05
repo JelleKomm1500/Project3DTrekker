@@ -17,6 +17,12 @@
             count += 1;
         }
     }
+    else if (type == 'powerup') {
+        this.Push = function (type) {
+            oArray[count] = new PowerUpObj(type);
+            count += 1;
+        }
+    }
     
 
     this.GetArray = function() {

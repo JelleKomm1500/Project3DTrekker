@@ -12,14 +12,14 @@
         new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 1
     );
 
-    CollisionBox2.rotation.set(0, 0, 190);
+    CollisionBox2.rotation.set(0, 0, 1.57);
 
     var CollisionBox3 = new Physijs.CylinderMesh(
         new THREE.CylinderGeometry(2, 2, 1, 12),
         new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 1
     );
 
-    CollisionBox3.rotation.set(0, 0, 190);
+    CollisionBox3.rotation.set(0, 0, 1.57);
 
     CollisionBox2.position.y = -2.15;
     CollisionBox2.position.z = -5.2;
@@ -47,13 +47,13 @@
     CollisionBox4.position.y = -0.4;
     CollisionBox4.position.z = 5;
     CollisionBox4.position.x = -3;
-    CollisionBox4.rotation.set(0, 0, 190);
+    CollisionBox4.rotation.set(0, 0, 1.57);
 
 
     CollisionBox5.position.y = -0.4;
     CollisionBox5.position.z = 5;
     CollisionBox5.position.x = 3;
-    CollisionBox5.rotation.set(0, 0, 190);
+    CollisionBox5.rotation.set(0, 0, 1.57);
 
     CollisionBox.add(CollisionBox4);
     CollisionBox.add(CollisionBox5);

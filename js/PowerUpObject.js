@@ -1,16 +1,13 @@
 ﻿function PowerUpObj(type) {
-    var PowerBox = PowerBoxFunctie(type);
-
     this.type = type;
-    this.function = GetModel()
+    var PowerBox = PowerBoxFunctie(type); 
+    this.GetModel = function ()
     {
         return PowerBox;
 
     }
+    this.GetType = function () {
+        return type;
 
-    
-
-    
-    return PowerBox;
-
+    }
 }

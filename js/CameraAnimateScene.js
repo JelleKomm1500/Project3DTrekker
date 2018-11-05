@@ -8,7 +8,7 @@
     timer.start();
 
     var test = 0;
-    var testpower;
+    const Powerups = new ObjectArray("powerup");
     const Rotsen = new ObjectArray("rots");
 
     for (var i = 150; i > -150; i-=30) {
@@ -57,10 +57,6 @@
         renderer.setSize(window.innerWidth, window.innerHeight + 5);
         document.body.appendChild(renderer.domElement);
 
-       testpower = PowerUpObj("life");
-
-        scene.add(testpower);
-
 
 
 
@@ -85,19 +81,21 @@
         for (var i = 0; i < (tArray.length); i++) {
             var car = tArray[i].GetModel();
             var i2 = i * 30;
-            car.position.set(i2, 30, i2);
+            car.position.set(i2, 30, i2);      
+            scene.add(car);
             car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
-
-
-                if (other_object.id == PowerUpObj.GetModel()) {
-                    
-                    )
-
-
-        })
-
-
-            scene.add(car);            
+                var pArray = Powerups.GetArray();
+                for (var i2 = 0; i2 < (pArray.length); i2++) {
+                    if (other_object.id == pArray[i2].GetModel().id) {
+                        var poweruptype = pArray[i2].GetType();
+                        console.log(poweruptype);
+                        scene.remove(pArray[i2].GetModel());
+                    }
+                }
+                
+            })
+        
+            
         }
 
         scene.add(Light());
@@ -152,13 +150,21 @@
             camera.add(Scoreafdruk);
             test += 1;
 
-            //na 10 sec
             if (afgerond % 10 === 0) {
                 RotsVal();
-                //powerup checken
-                //zo niet, nieuwe spawnen
 
             }
+
+            if (afgerond % 3 === 0) {           
+                var random = Math.floor(Math.random() * 2);
+                Powerups.Push(random);
+                var parray = Powerups.GetArray();
+                var powerupbox = (parray[parray.length - 1]).GetModel();
+                var rotsloc = FindRots();
+                powerupbox.position.set(rotsloc[0], 400, rotsloc[2]);
+                scene.add(powerupbox);
+            }
+
 
         }
 
@@ -170,8 +176,8 @@
             var car = tArray[i];
             car.Controls(keyboard);
             if ((car.GetModel().position.y) < -100) {
-                var test150 = FindRots();
-                (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
+                var rotsloc = FindRots();
+                (car.GetModel()).position.set(rotsloc[0], rotsloc[1], rotsloc[2]);
                 (car.GetModel()).__dirtyPosition = true;
 
                 for (var i2 = 0; i2 < (tArray.length); i2++) {
