@@ -8,7 +8,7 @@
     timer.start();
 
     var test = 0;
-
+    var testpower;
     const Rotsen = new ObjectArray("rots");
 
     for (var i = 150; i > -150; i-=30) {
@@ -57,6 +57,13 @@
         renderer.setSize(window.innerWidth, window.innerHeight + 5);
         document.body.appendChild(renderer.domElement);
 
+       testpower = PowerUpObj("life");
+
+        scene.add(testpower);
+
+
+
+
         //geen idee waarom maar door dit vallen de trekkers niet door de grond
         var test32 = new Physijs.BoxMesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -79,6 +86,17 @@
             var car = tArray[i].GetModel();
             var i2 = i * 30;
             car.position.set(i2, 30, i2);
+            car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
+
+
+                if (other_object.id == PowerUpObj.GetModel()) {
+                    
+                    )
+
+
+        })
+
+
             scene.add(car);            
         }
 
@@ -134,11 +152,18 @@
             camera.add(Scoreafdruk);
             test += 1;
 
+            //na 10 sec
             if (afgerond % 10 === 0) {
                 RotsVal();
+                //powerup checken
+                //zo niet, nieuwe spawnen
+
             }
 
         }
+
+        
+
         
         var tArray = Trekkers.GetArray();
         for (var i = 0; i < (tArray.length); i++) {
