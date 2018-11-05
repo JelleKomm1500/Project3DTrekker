@@ -180,17 +180,18 @@
         for (var i = 0; i < (tArray.length); i++) {
             var car = tArray[i];
             car.Controls(keyboard);
-            if ((car.GetModel().position.y) < -100) {
-                var rotsloc = FindRots();
-                (car.GetModel()).position.set(rotsloc[0], rotsloc[1], rotsloc[2]);
-                (car.GetModel()).__dirtyPosition = true;
-
-                for (var i2 = 0; i2 < (tArray.length); i2++) {
-                    var car2 = tArray[i2];
-                    if ( (car2.GetModel().id) == (car.GetTouched()) ) {
-                        Scorebord.UpdateScore(car2.GetName());
-                    }
+            if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
+                var lives=Scorebord.UpdateScore(car.GetName());
+                if (lives > 0) {
+                    var test150 = FindRots();
+                    (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
+                    (car.GetModel()).__dirtyPosition = true;
                 }
+                else {
+                    car.Die();
+                }
+                
+                
             }
         }
         render();
