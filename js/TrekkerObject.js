@@ -9,6 +9,7 @@
     var testklokkie = 0;
     var car = Trekker(name);
     var dead = false;
+    var needspoint = false;
     //var otherCars;
     //var lastTouchedBy;
     
@@ -33,7 +34,12 @@
     //this.loadOthers = function (trekkers) {
     //    otherCars = trekkers;
     //}
-
+    this.FlipNeeds = function () {
+        needspoint = !needspoint;
+    }
+    this.GetNeedsPoint = function () {
+        return needspoint;
+    }
     this.GetName = function () {
         return name;
     }
@@ -69,8 +75,8 @@
     }
 
     this.ReceivePowerup = function (type) {
-        if (type == 0) { console.log("dit is een type 0 powerup")}
-        else if (type == 1) { console.log("dit is een type 1 powerup") }
+        if (type == 0) { needspoint=true; }
+        else if (type == 1) { accspeed = accspeed * 2; }
         else if (type == 2) { console.log("dit is een type 2 powerup") }
     }
     this.Controls = function (keyboard) {

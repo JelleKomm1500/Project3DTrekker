@@ -23,6 +23,16 @@
         }
     }
 
+    this.GiveLife = function (name) {
+        for (var i = 0; i < (tweedArray.length); i++) {
+            var eendArray = tweedArray[i];
+            if (eendArray[0] == name) {
+                eendArray[1] += 1;
+                return eendArray[1];
+            }
+        }
+    }
+
     //this.CheckLives = function (name) {
     //    for (var i = 0; i < (tweedArray.length); i++) {
     //        var eendArray = tweedArray[i];
