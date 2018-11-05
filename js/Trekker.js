@@ -1,4 +1,4 @@
-﻿function Trekker() {
+﻿function Trekker(spelernaam) {
     Trekkers = new THREE.Group();
     //nog cylinderwielen proberen?
     var CollisionBox = new Physijs.SphereMesh(
@@ -80,5 +80,10 @@
         mesh.position.set(0, -4, 0);
         CollisionBox.add(mesh);
     })
+
+    var text = CreatePlayerText(spelernaam);
+
+    CollisionBox.add(text);
+
     return CollisionBox;
 }

@@ -7,7 +7,7 @@
     var speed = 1;
     var backwardspeed = 1;
     var testklokkie = 0;
-    var car = Trekker();
+    var car = Trekker(name);
     var otherCars;
     var lastTouchedBy;
 
