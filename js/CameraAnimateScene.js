@@ -42,7 +42,7 @@
         //Create scene
         scene = new Physijs.Scene;
         scene.setGravity(new THREE.Vector3(0, -250, 0));
-
+        scene.add(CubeSkybox());
         //create camera view, scene and renderer
         var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
@@ -81,7 +81,7 @@
             car.position.set(i2, 30, i2);
             scene.add(car);            
         }
-        scene.add(CircleSkyBox());
+
         scene.add(Light());
 
         
