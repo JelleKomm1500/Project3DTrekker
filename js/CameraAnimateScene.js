@@ -7,6 +7,8 @@
     var timer = new THREE.Clock();
     timer.start();
 
+
+
     var test = 0;
     const Powerups = new ObjectArray("powerup");
     const Rotsen = new ObjectArray("rots");
@@ -47,10 +49,12 @@
         var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
-        var controls = new THREE.OrbitControls(camera);
-        camera.position.set(0, 150, 400);
-        //camera.lookAt(scene.position);
+        //var controls = new THREE.OrbitControls(camera);
+        camera.position.set(0, 300, 450);
+        camera.lookAt(0, 0, 0);
         scene.add(camera);
+
+
 
         renderer = new THREE.WebGLRenderer({ antialias: false });
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -102,10 +106,13 @@
         
             
         }
-
-        scene.add(Light());
-
+        var ambientLight = new THREE.AmbientLight(0x404040, 0); // soft white light
+        var directionalLight = new THREE.DirectionalLight(0xffffff, 2.0);
+        directionalLight.position.set(125, 100, 0);
         
+        scene.add(ambientLight);
+        scene.add(directionalLight);
+
         camera.add(Scoreafdruk);
     }
 
@@ -180,11 +187,6 @@
         for (var i = 0; i < (tArray.length); i++) {
             var car = tArray[i];
             car.Controls(keyboard);
-            if (car.GetNeedsPoint()) {
-                car.FlipNeeds();
-                Scorebord.GiveLife(car.GetName());
-
-            }
             if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
                 var lives=Scorebord.UpdateScore(car.GetName());
                 if (lives > 0) {
