@@ -13,16 +13,16 @@
     const Powerups = new ObjectArray("powerup");
     const Rotsen = new ObjectArray("rots");
 
-    for (var i = 150; i > -240; i-=30) {
-        for (var i2 = 10; i2 > -10; i2--) {
-            Rotsen.Push((i2 * 30), -10, i);
+    for (var i = 150; i > -240; i-=60) {
+        for (var i2 = 5; i2 > -5; i2--) {
+            Rotsen.Push((i2 * 60), -10, i);
         }
     }
 
     
     const Trekkers = new ObjectArray("trekker");
-    Trekkers.Push("Speler1", 11, 1.01, "W", "A", "D", "S");
-    Trekkers.Push("Speler2", 11, 1.01, "U", "H", "K", "J");
+    Trekkers.Push("snel", "Speler1", "W", "A", "D", "S");
+    Trekkers.Push("snel", "Speler2", "U", "H", "K", "J");
 
     const Scorebord = new Scoreboard();
     Scorebord.LoadPlayers(Trekkers.GetArray());
@@ -50,7 +50,7 @@
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
         //var controls = new THREE.OrbitControls(camera);
-        camera.position.set(0, 300, 300);
+        camera.position.set(0, 450, 450);
         camera.lookAt(0, 0, 0);
         scene.add(camera);
 
@@ -162,7 +162,7 @@
             camera.add(Scoreafdruk);
             test += 1;
 
-            if (afgerond % 10 === 0) {
+            if (afgerond % 1 === 0) {
                 RotsVal();
 
             }

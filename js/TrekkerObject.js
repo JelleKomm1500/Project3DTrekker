@@ -1,13 +1,24 @@
-﻿function Trekkerobj(name, maxspeed, accspeed, forward, left, right, back) {
+﻿function Trekkerobj(type, name, forward, left, right, back) {
 
+    this.type = type;
     this.name = name;
-    this.maxspeed = maxspeed;
-    this.accspeed = accspeed;
+    var maxspeed;
+    var accspeed;
     var clock = new THREE.Clock();
     var speed = 1;
     var backwardspeed = 1;
     var testklokkie = 0;
-    var car = Trekker(name);
+    var car;
+    if (type == "snel") {
+        car = Trekker(name);
+        maxspeed = 10;
+        accspeed = 1.01;
+    }
+    else if (type == "zwaar") {
+        car = ZwareTrekker(name);
+        maxspeed = 8;
+        accspeed = 1.008;
+    }
     var dead = false;
     var needspoint = false;
     //var otherCars;
