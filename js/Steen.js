@@ -1,11 +1,11 @@
 ﻿function rotsfunctie(x, y, z) {
     var cubeMaterials = [
-        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/grassSide.png"), side: THREE.DoubleSide }), //LEFT
-        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/grassSide.png"), side: THREE.DoubleSide }), //RIGHT
-        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/grasstop.png"), side: THREE.DoubleSide }), //TOP
-        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/grassbottom.png"), side: THREE.DoubleSide }), //BOTTOM
-        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/grassSide.png"), side: THREE.DoubleSide }), //FRONT
-        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/grassSide.png"), side: THREE.DoubleSide }), //BACK
+        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/stone.jpg"), side: THREE.DoubleSide }), //LEFT
+        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/stone.jpg"), side: THREE.DoubleSide }), //RIGHT
+        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/stone.jpg"), side: THREE.DoubleSide }), //TOP
+        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/stone.jpg"), side: THREE.DoubleSide }), //BOTTOM
+        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/stone.jpg"), side: THREE.DoubleSide }), //FRONT
+        new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/stone.jpg"), side: THREE.DoubleSide }), //BACK
     ];
 
     var geo = new THREE.BoxGeometry(30, 30, 30);
