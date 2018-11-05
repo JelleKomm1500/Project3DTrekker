@@ -4,6 +4,11 @@
     font-weight: normal;
     font-style: normal;
 }
+html {
+    height: 110%;
+    margin-bottom: 0.01em;
+    overflow-y:scroll;
+}
 
 body {
     background: url(../img/achtergrond.jpg) no-repeat center center fixed;
@@ -20,8 +25,42 @@ body {
 ul {
     list-style-type: none;
 }
+
 .btnList{
     padding: 10px;
+}
+
+.plus-position {
+    position: absolute; 
+    top: 8px; 
+    right: 16px; 
+    font-size: 18px;
+    color: white;
+}
+
+    .plus-position:hover {
+        text-shadow: 0 0 2em rgba(255,255,255,1);
+        color: grey;
+        border-color: #000000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.minus-position {
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+    color: white;
+}
+
+.minus-position:hover {
+    text-shadow: 0 0 2em rgba(255,255,255,1);
+    color: grey;
+    border-color: #000000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 p.button5 {
