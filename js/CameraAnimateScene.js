@@ -162,7 +162,7 @@
             camera.add(Scoreafdruk);
             test += 1;
 
-            if (afgerond % 1 === 0) {
+            if (afgerond % 10 === 0) {
                 RotsVal();
 
             }
