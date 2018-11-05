@@ -8,31 +8,40 @@
     var backwardspeed = 1;
     var testklokkie = 0;
     var car = Trekker(name);
-    var otherCars;
-    var lastTouchedBy;
+    var dead = false;
+    //var otherCars;
+    //var lastTouchedBy;
+    
 
-    car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
 
-        for (var i = 0; i < (otherCars.length); i++) {
-            if (other_object.id == (otherCars[i].GetModel()).id) {
-                lastTouchedBy = (otherCars[i].GetModel()).id;
-                console.log((otherCars[i].GetModel()).id);
-            }
+    //car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
 
-        }
+    //    for (var i = 0; i < (otherCars.length); i++) {
+    //        if (other_object.id == (otherCars[i].GetModel()).id) {
+    //            lastTouchedBy = (otherCars[i].GetModel()).id;
+    //            console.log((otherCars[i].GetModel()).id);
+    //        }
+
+    //    }
         
-    })
+    //})
 
-    this.GetTouched = function () {
-        return lastTouchedBy;
-    }
+    //this.GetTouched = function () {
+    //    return lastTouchedBy;
+    //}
 
-    this.loadOthers = function (trekkers) {
-        otherCars = trekkers;
-    }
+    //this.loadOthers = function (trekkers) {
+    //    otherCars = trekkers;
+    //}
 
     this.GetName = function () {
         return name;
+    }
+    this.Die = function () {
+        dead = true;
+    }
+    this.CheckAlive = function () {
+        return !(dead);
     }
     this.GetModel = function () {
         return car;

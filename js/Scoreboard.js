@@ -6,8 +6,8 @@
     this.LoadPlayers = function (trekkers) {
         for (var i = 0; i < (trekkers.length); i++) {
             var name = trekkers[i].GetName();
-            trekkers[i].loadOthers(trekkers);
-            var eendArray = [name, 0];
+            //trekkers[i].loadOthers(trekkers);
+            var eendArray = [name, 3];
             tweedArray.push(eendArray);
         }
     }
@@ -17,10 +17,20 @@
         for (var i = 0; i < (tweedArray.length); i++) {
             var eendArray = tweedArray[i];
             if (eendArray[0] == name) {
-                eendArray[1] += 100;
+                eendArray[1] -= 1;
+                return eendArray[1];
             }
         }
     }
+
+    //this.CheckLives = function (name) {
+    //    for (var i = 0; i < (tweedArray.length); i++) {
+    //        var eendArray = tweedArray[i];
+    //        if (eendArray[0] == name) {
+    //            return eendArray[1];
+    //        }
+    //    }
+    //}
 
     this.DrawScoreboard = function (tijd) {
         var scoreboardstring = "Tijd:" + tijd + " ";
