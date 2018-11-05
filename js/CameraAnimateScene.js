@@ -187,6 +187,11 @@
         for (var i = 0; i < (tArray.length); i++) {
             var car = tArray[i];
             car.Controls(keyboard);
+            if (car.GetNeedsPoint()) {
+                car.FlipNeeds();
+                Scorebord.GiveLife(car.GetName());
+
+            }
             if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
                 var lives=Scorebord.UpdateScore(car.GetName());
                 if (lives > 0) {
