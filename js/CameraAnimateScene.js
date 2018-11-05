@@ -13,7 +13,7 @@
     const Powerups = new ObjectArray("powerup");
     const Rotsen = new ObjectArray("rots");
 
-    for (var i = 150; i > -150; i-=30) {
+    for (var i = 150; i > -240; i-=30) {
         for (var i2 = 10; i2 > -10; i2--) {
             Rotsen.Push((i2 * 30), -10, i);
         }
@@ -50,13 +50,13 @@
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
         //var controls = new THREE.OrbitControls(camera);
-        camera.position.set(0, 300, 450);
+        camera.position.set(0, 300, 300);
         camera.lookAt(0, 0, 0);
         scene.add(camera);
 
 
 
-        renderer = new THREE.WebGLRenderer({ antialias: false });
+        renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight + 5);
         document.body.appendChild(renderer.domElement);
@@ -106,7 +106,7 @@
         
             
         }
-        var ambientLight = new THREE.AmbientLight(0x404040, 0); // soft white light
+        var ambientLight = new THREE.AmbientLight(0x404040, 1); // soft white light
         var directionalLight = new THREE.DirectionalLight(0xffffff, 2.0);
         directionalLight.position.set(125, 100, 0);
         

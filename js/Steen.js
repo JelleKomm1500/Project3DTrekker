@@ -8,6 +8,7 @@
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/rock.jpg"), side: THREE.DoubleSide }), //BACK
     ];
 
+    cubeMaterials.map.anisotropy = 8;
     var geo = new THREE.BoxGeometry(30, 30, 30);
     var rotstex = new THREE.Mesh(geo, cubeMaterials);
 
