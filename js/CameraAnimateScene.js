@@ -5,7 +5,7 @@
     Physijs.scripts.ammo = 'ammo.js';
     var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
     var timer = new THREE.Clock();
-    timer.start()
+    timer.start();
 
     var test = 0;
 
