@@ -11,6 +11,7 @@
     var otherCars;
     var lastTouchedBy;
 
+
     car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
 
         for (var i = 0; i < (otherCars.length); i++) {
@@ -57,6 +58,12 @@
                 return speed2 * 1.5;
             }
         }
+    }
+
+    this.ReceivePowerup = function (type) {
+        if (type == 0) { console.log("dit is een type 0 powerup")}
+        else if (type == 1) { console.log("dit is een type 1 powerup") }
+        else if (type == 2) { console.log("dit is een type 2 powerup") }
     }
     this.Controls = function (keyboard) {
         var delta = clock.getDelta(); // seconds.
