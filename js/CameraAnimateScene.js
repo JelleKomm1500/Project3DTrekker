@@ -1,4 +1,4 @@
-﻿document.getElementById("startGame").onclick = function (settingsarray) {
+﻿function StartGame(settingsarray) {
     'use strict';
     console.log(settingsarray);
     Physijs.scripts.worker = 'js/physijs_worker.js';
