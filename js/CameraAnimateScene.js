@@ -44,6 +44,7 @@
     var Scoreafdruk = Scorebord.DrawScoreboard(timer.getElapsedTime());
     
     function hide() {
+        document.getElementById("menu").style.overflow = "hidden";
         var x = document.getElementById("wrapper");
         if (x.style.display === "none") {
             x.style.display = "block";
