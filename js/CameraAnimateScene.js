@@ -170,7 +170,7 @@ function StartGame(settingsarray) {
                 }
                 if (Chance == 3) {
                     //Kiest random één van de twee powerups en spawned deze boven een niet gevallen rock.
-                    var random = Math.random();
+                    var random = Math.floor(Math.random() * 2);
                     Powerups.Push(random);
                     var parray = Powerups.GetArray();
                     var powerupbox = (parray[parray.length - 1]).GetModel();

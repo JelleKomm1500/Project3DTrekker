@@ -86,7 +86,6 @@ function TractorObject(type, name, forward, back, left, right) {
         var moveDistance = 50 * delta; // 100 pixels per second
         var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
         var forceVector = new THREE.Vector3(0, 0, 0); //beweginsvector
-        console.log(car.position.y);
 
         //De tractor controls worden uitgeschakeld als je moet vallen.
         if (car.position.y < 27 || car.position.y > 33) {
