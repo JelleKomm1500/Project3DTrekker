@@ -210,6 +210,7 @@
                         var lives = Scorebord.UpdateScore(car.GetName());
                         if (lives > 0) {
                             var test150 = FindRots();
+                            car.ResetVelocity();
                             (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
                             (car.GetModel()).__dirtyPosition = true;
                         }

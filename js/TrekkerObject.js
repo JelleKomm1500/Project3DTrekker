@@ -81,6 +81,14 @@
         else if (type == 1) { accspeed = accspeed * 2; }
         else if (type == 2) { console.log("dit is een type 2 powerup") }
     }
+    this.ResetVelocity = function () {
+        var force_vector = new THREE.Vector3(0, 0, 0);
+        car.setLinearVelocity(force_vector);
+        car.setAngularVelocity(force_vector);
+        car.rotation.set(0, 0, 0);
+        car.__dirtyRotation = true;
+
+    }
     this.Controls = function (keyboard) {
         var delta = clock.getDelta(); // seconds.
         var moveDistance = 50 * delta; // 100 pixels per second
@@ -91,10 +99,10 @@
 
         console.log(car.position.y);
 
-        if (car.position.y < 27) {
+        if (car.position.y < 27 || car.position.y > 33) {
 
-            speed = 0;
-            backwardspeed = 0;
+            speed = 1;
+            backwardspeed = 1;
         }
 
         if (speed > 1) {
