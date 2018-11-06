@@ -7,10 +7,9 @@
     timer.start();
 
 
-    var ending = false;
-    var ending2 = false;
-    var test = 0;
-    var test2 = 0;
+    var endstage = 0;
+    var timersecs = 0;
+    var endtimersecs = 0;
     const Powerups = new ObjectArray("powerup");
     const Rotsen = new ObjectArray("rots");
 
@@ -22,8 +21,6 @@
 
     
     const Trekkers = new ObjectArray("trekker");
-    //Trekkers.Push("snel", "Speler1", "W", "S", "A", "D");
-    //Trekkers.Push("zwaar", "Speler2", "U", "J", "H", "K");
 
     for (var i = 0; i < (settingsarray.length); i++) {
         var eendArray = settingsarray[i];
@@ -41,7 +38,7 @@
 
     var keyboard = new THREEx.KeyboardState();
 
-    var Scoreafdruk = Scorebord.DrawScoreboard(timer.getElapsedTime());
+    var Scoremodel = Scorebord.DrawScoreboard(timer.getElapsedTime());
     
     function hide() {
         document.getElementById("menu").style.overflow = "hidden";
@@ -77,12 +74,12 @@
 
 
         //geen idee waarom maar door dit vallen de trekkers niet door de grond
-        var test32 = new Physijs.BoxMesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshFaceMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 0
-        );
-        test32.position.x = 10000;
-        scene.add(test32);
+        //var test32 = new Physijs.BoxMesh(
+        //    new THREE.BoxGeometry(1, 1, 1),
+        //    new THREE.MeshFaceMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 0
+        //);
+        //test32.position.x = 10000;
+        //scene.add(test32);
 
         window.addEventListener('resize', onWindowResize, false);
 
@@ -128,7 +125,7 @@
         scene.add(directionalLight);
 
 
-        camera.add(Scoreafdruk);
+        camera.add(Scoremodel);
     }
 
     function onWindowResize() {
@@ -137,14 +134,14 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    function RotsVal() {
+    function RotsFall() {
 
         var array = Rotsen.GetArray();
         var random = Math.floor(Math.random() * array.length);
         if (array[random].CheckFlying()) {
             array[random].Fall();
         }
-        else RotsVal();
+        else RotsFall();
         
     }
 
@@ -168,16 +165,16 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        if (!ending) {
-            var afgerond = parseInt(timer.getElapsedTime(), 10);
-            if (afgerond > test) {
-                camera.remove(Scoreafdruk);
-                Scoreafdruk = Scorebord.DrawScoreboard(afgerond);
-                camera.add(Scoreafdruk);
-                test += 1;
+        if (endstage==0) {
+            var roundedtimer = parseInt(timer.getElapsedTime(), 10);
+            if (roundedtimer > timersecs) {
+                camera.remove(Scoremodel);
+                Scoremodel = Scorebord.DrawScoreboard(afgerond);
+                camera.add(Scoremodel);
+                timersecs += 1;
 
                 if (afgerond % 10 === 0) {
-                    RotsVal();
+                    RotsFall();
 
                 }
 
@@ -192,7 +189,7 @@
                 }
 
                 if (afgerond % 300 === 0) {
-                    ending = true;
+                    endstage = 1;
                 }
 
             }
@@ -212,9 +209,9 @@
                     if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
                         var lives = Scorebord.UpdateScore(car.GetName());
                         if (lives > 0) {
-                            var test150 = FindRots();
+                            var rotsloc = FindRots();
                             car.ResetVelocity();
-                            (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
+                            (car.GetModel()).position.set(rotsloc[0], rotsloc[1], rotsloc[2]);
                             (car.GetModel()).__dirtyPosition = true;
                         }
                         else {
@@ -226,15 +223,15 @@
                     var count = 0;
                     for (var i = 0; i < (tArray.length); i++) {
                         if (!(tArray[i].CheckAlive())) { count++ }
-                        if (count == 1) {ending = true;}
                     }
+                        if (count == 1) { endstage = 1; }                   
                 }
             }
                 if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
                     var lives = Scorebord.UpdateScore(car.GetName());
                     if (lives > 0) {
-                        var test150 = FindRots();
-                        (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
+                        var rotsloc = FindRots();
+                        (car.GetModel()).position.set(rotsloc[0], rotsloc[1], rotsloc[2]);
                         (car.GetModel()).__dirtyPosition = true;
                     }
                     else {
@@ -246,22 +243,21 @@
             
         }
         else {
-            if (!ending2) {
-                ending2 = !ending2;
+            if (endstage==1) {
+                endstage=2;
                 var name = Scorebord.GetHighestScore();
-                camera.remove(Scoreafdruk);
+                camera.remove(Scoremodel);
                 camera.add(Ending(name));
                 timer.stop();
                 timer.start();
             }
             else {
-                var afgerond = parseInt(timer.getElapsedTime(), 10);
+                var roundedtimer = parseInt(timer.getElapsedTime(), 10);
 
-                if (afgerond > test2) {
-                    test2 += 1;
+                if (roundedtimer > endtimersecs) {
+                    endtimersecs += 1;
                     if (afgerond % 10 === 0) {
                         window.location.href = "http://www.w3schools.com";
-
                     }
                 }
                     
