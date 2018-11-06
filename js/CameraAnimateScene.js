@@ -8,8 +8,10 @@
     timer.start();
 
 
-
+    var ending = false;
+    var ending2 = false;
     var test = 0;
+    var test2 = 0;
     const Powerups = new ObjectArray("powerup");
     const Rotsen = new ObjectArray("rots");
 
@@ -21,9 +23,8 @@
 
     
     const Trekkers = new ObjectArray("trekker");
-    Trekkers.Push("snel", "Speler1", "W", "A", "D", "S");
-   // Trekkers.Push("snel", "Speler2", "U", "H", "K", "J");
-    Trekkers.Push("zwaar", "Speler3", "U", "H", "K", "J");
+    Trekkers.Push("snel", "Speler1", "W", "S", "A", "D");
+    Trekkers.Push("zwaar", "Speler2", "U", "J", "H", "K");
 
     const Scorebord = new Scoreboard();
     Scorebord.LoadPlayers(Trekkers.GetArray());
@@ -50,7 +51,6 @@
         var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
-        var controls = new THREE.OrbitControls(camera);
         camera.position.set(0, 450, 450);
         camera.lookAt(0, 0, 0);
         scene.add(camera);
@@ -124,16 +124,16 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    //function RotsVal() {
+    function RotsVal() {
 
-    //    var array = Rotsen.GetArray();
-    //    var random = Math.floor(Math.random() * array.length);
-    //    if (array[random].CheckFlying()) {
-    //        array[random].Fall();
-    //    }
-    //    else RotsVal();
+        var array = Rotsen.GetArray();
+        var random = Math.floor(Math.random() * array.length);
+        if (array[random].CheckFlying()) {
+            array[random].Fall();
+        }
+        else RotsVal();
         
-    //}
+    }
 
     function FindRots() {
 
@@ -157,56 +157,90 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        var afgerond = parseInt(timer.getElapsedTime(), 10);
-        if (afgerond > test) {
-            camera.remove(Scoreafdruk);
-            Scoreafdruk = Scorebord.DrawScoreboard(afgerond);
-            camera.add(Scoreafdruk);
-            test += 1;
+        if (!ending) {
+            var afgerond = parseInt(timer.getElapsedTime(), 10);
+            if (afgerond > test) {
+                camera.remove(Scoreafdruk);
+                Scoreafdruk = Scorebord.DrawScoreboard(afgerond);
+                camera.add(Scoreafdruk);
+                test += 1;
 
-            if (afgerond % 10 === 0) {
-                RotsVal();
+                if (afgerond % 10 === 0) {
+                    RotsVal();
 
-            }
+                }
 
-            if (afgerond % 3 === 0) {           
-                var random = Math.floor(Math.random() * 2);
-                Powerups.Push(random);
-                var parray = Powerups.GetArray();
-                var powerupbox = (parray[parray.length - 1]).GetModel();
-                var rotsloc = FindRots();
-                powerupbox.position.set(rotsloc[0], 400, rotsloc[2]);
-                scene.add(powerupbox);
-            }
+                if (afgerond % 30 === 0) {
+                    var random = Math.floor(Math.random() * 2);
+                    Powerups.Push(random);
+                    var parray = Powerups.GetArray();
+                    var powerupbox = (parray[parray.length - 1]).GetModel();
+                    var rotsloc = FindRots();
+                    powerupbox.position.set(rotsloc[0], 400, rotsloc[2]);
+                    scene.add(powerupbox);
+                }
 
-
-        }
-
-        
-
-        
-        var tArray = Trekkers.GetArray();
-        for (var i = 0; i < (tArray.length); i++) {
-            var car = tArray[i];
-            car.Controls(keyboard);
-            if (car.GetNeedsPoint()) {
-                car.FlipNeeds();
-                Scorebord.GiveLife(car.GetName());
+                if (afgerond % 300 === 0) {
+                    ending = true;
+                }
 
             }
-            if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
-                var lives=Scorebord.UpdateScore(car.GetName());
-                if (lives > 0) {
-                    var test150 = FindRots();
-                    (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
-                    (car.GetModel()).__dirtyPosition = true;
+
+
+
+
+            var tArray = Trekkers.GetArray();
+            for (var i = 0; i < (tArray.length); i++) {
+                var car = tArray[i];
+                if ((car.CheckAlive())) {
+                    car.Controls(keyboard);
+                    if (car.GetNeedsPoint()) {
+                        car.FlipNeeds();
+                        Scorebord.GiveLife(car.GetName());
+                    }
+                    if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
+                        var lives = Scorebord.UpdateScore(car.GetName());
+                        if (lives > 0) {
+                            var test150 = FindRots();
+                            (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
+                            (car.GetModel()).__dirtyPosition = true;
+                        }
+                        else {
+                            car.Die();
+                        }
+                    }
                 }
                 else {
-                    car.Die();
+                    var count = 0;
+                    for (var i = 0; i < (tArray.length); i++) {
+                        if (!(tArray[i].CheckAlive())) { count++ }
+                        if (count == 1) {ending = true;}
+                    }
                 }
-                
-                
             }
+        }
+        else {
+            if (!ending2) {
+                ending2 = !ending2;
+                var name = Scorebord.GetHighestScore();
+                camera.remove(Scoreafdruk);
+                camera.add(Ending(name));
+                timer.stop();
+                timer.start();
+            }
+            else {
+                var afgerond = parseInt(timer.getElapsedTime(), 10);
+
+                if (afgerond > test2) {
+                    test2 += 1;
+                    if (afgerond % 10 === 0) {
+                        window.location.href = "http://www.w3schools.com";
+
+                    }
+                }
+                    
+            }
+            
         }
         render();
     }

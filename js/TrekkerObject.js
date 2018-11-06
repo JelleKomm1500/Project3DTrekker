@@ -1,4 +1,4 @@
-﻿function Trekkerobj(type, name, forward, left, right, back) {
+﻿function Trekkerobj(type, name, forward, back, left, right) {
 
     this.type = type;
     this.name = name;
@@ -21,30 +21,8 @@
     }
     var dead = false;
     var needspoint = false;
-    //var otherCars;
-    //var lastTouchedBy;
-    
+    var colliding = false;
 
-
-    //car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
-
-    //    for (var i = 0; i < (otherCars.length); i++) {
-    //        if (other_object.id == (otherCars[i].GetModel()).id) {
-    //            lastTouchedBy = (otherCars[i].GetModel()).id;
-    //            console.log((otherCars[i].GetModel()).id);
-    //        }
-
-    //    }
-        
-    //})
-
-    //this.GetTouched = function () {
-    //    return lastTouchedBy;
-    //}
-
-    //this.loadOthers = function (trekkers) {
-    //    otherCars = trekkers;
-    //}
     this.FlipNeeds = function () {
         needspoint = !needspoint;
     }
@@ -95,30 +73,21 @@
         var moveDistance = 50 * delta; // 100 pixels per second
         var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
         var forceVector = new THREE.Vector3(0, 0, 0);
-        if (speed > 1) {
-            //car.translateZ(-moveDistance * GetMovespeed());
-            //car.__dirtyPosition = true;
 
-            //var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
-            //var force_vector = new THREE.Vector3(0, 0, (GetMovespeed() * -1)).applyMatrix4(rotation_matrix);
-            //car.applyCentralImpulse(force_vector);
+        if (speed > 1) {
+            
 
             var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
             var force_vector = new THREE.Vector3(0, 0, GetMovespeed() * -10).applyMatrix4(rotation_matrix);
             car.setLinearVelocity(force_vector);
 
 
-            //var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
-            //var force_vector = new THREE.Vector3(0, 0, (GetMovespeed() * -10)).applyMatrix4(rotation_matrix);
-            //car.applyCentralImpulse(force_vector);
-
             var klokkie2 = testklokkie;
             if (GetMovespeed() < 1) {
                 klokkie2 = testklokkie * (GetMovespeed());
             }            
-            //car.rotateOnAxis(new THREE.Vector3(0, klokkie2, 0), rotateAngle);
+
             speed = speed * 0.996;
-            //car.__dirtyRotation = true;
 
             var force_vector = new THREE.Vector3(0, klokkie2, 0).applyMatrix4(rotation_matrix);
             car.setAngularVelocity(force_vector);

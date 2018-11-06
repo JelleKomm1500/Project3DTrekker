@@ -12,8 +12,8 @@
     }
 
     else if (type == 'trekker') {
-        this.Push = function (type, name, forward, left, right, back) {
-            oArray[count] = new Trekkerobj(type, name, forward, left, right, back);
+        this.Push = function (type, name, forward, back, left, right) {
+            oArray[count] = new Trekkerobj(type, name, forward, back, left, right);
             count += 1;
         }
     }

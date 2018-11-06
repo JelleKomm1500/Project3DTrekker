@@ -33,14 +33,24 @@
         }
     }
 
-    //this.CheckLives = function (name) {
-    //    for (var i = 0; i < (tweedArray.length); i++) {
-    //        var eendArray = tweedArray[i];
-    //        if (eendArray[0] == name) {
-    //            return eendArray[1];
-    //        }
-    //    }
-    //}
+    this.GetHighestScore = function () {
+        var highscore = 0;
+        var winnaar;
+        for (var i = 0; i < (tweedArray.length); i++) {
+            var eendArray = tweedArray[i];
+            if (eendArray[1] > highscore) {
+                highscore = eendArray[1];
+            }
+        }
+
+        for (var i = 0; i < (tweedArray.length); i++) {
+            var eendArray = tweedArray[i];
+            if (eendArray[1] == highscore) {
+                winnaar = eendArray[0];
+            }
+        }
+        return winnaar;
+    }
 
     this.DrawScoreboard = function (tijd) {
         var scoreboardstring = "Tijd:" + tijd + " ";
