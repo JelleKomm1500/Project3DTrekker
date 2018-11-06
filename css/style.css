@@ -4,10 +4,26 @@
     font-weight: normal;
     font-style: normal;
 }
+html {
+    height: 110%;
+    margin-bottom: 0.01em;
+    overflow-y:scroll;
+}
 
 body {
     background: url(../img/achtergrond.jpg) no-repeat center center fixed;
     background-size: cover;
+}
+.inputfield {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.inputfieldsmall {
+    margin-bottom: 5px;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .title {
@@ -20,7 +36,16 @@ body {
 ul {
     list-style-type: none;
 }
-.btnList{
+
+.card-custom {
+    display: none;
+    width: 16rem; 
+    margin-right: 20px; 
+    margin-bottom: 20px; 
+    margin-top: 20px;
+}
+
+.btnList {
     padding: 10px;
 }
 

@@ -1,6 +1,6 @@
-﻿document.getElementById("startGame").onclick = function () {
+﻿function StartGame(settingsarray) {
     'use strict';
-
+    console.log(settingsarray);
     Physijs.scripts.worker = 'js/physijs_worker.js';
     Physijs.scripts.ammo = 'ammo.js';
     var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
@@ -139,12 +139,10 @@
 
         var array = Rotsen.GetArray();
         var random = Math.floor(Math.random() * array.length);
-        console.log(array[random].CheckFlying());
         if (array[random].CheckFlying()) {
             var x = ((array[random]).GetModel()).position.x;
             var z = ((array[random]).GetModel()).position.z;
             var locatie = [x, 30, z]; 
-            console.log(locatie);
             return locatie;
 
         }

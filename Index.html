@@ -1,10 +1,12 @@
 ﻿<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" id="html">
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/hover-min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Menu</title>
 </head>
 <body style="margin:0px;padding:0px;overflow:hidden;" id="menu">
@@ -13,10 +15,126 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h1 class="title">TREKKER WRECKER</h1>
-                    <ul>
-                        <li class="btnList"><p href="#" class="button5 hvr-bob" id="startGame">Start Game</p></li>
-                        <li class="btnList"><p href="#" class="button5 hvr-bob" id="startGame">Multiplayer</p></li>
-                    </ul>
+                    <div class="menuButtons" id="menuButtons">
+                        <ul>
+                            <li class="btnList"><p class="button5 hvr-bob" id="local" onclick="hideElem(), showPlay()">Start Game</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="choosePlayers" class="container" style="display: none">
+            <div class="col-12 text-center">
+                <ul>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu1Player()">Een speler</p></li>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu2Player()">Twee spelers</p></li>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu3Player()">Drie spelers</p></li>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu4Player()">Vier spelers</p></li>
+                </ul>
+            </div>
+        </div>
+        <div id="customPlayer" class="container">
+            <div class="col-md-12 text-center" style="display: none" id="playGame">
+                <p class="button5 hvr-bob btnList" onclick="StartGame(RetrieveSettings());" id="startGame">Start Game</p>
+            </div>
+            <div class="card-group">
+                <div class="row">
+                    <div class="col-md-3 text-center" id="player1" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer1" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+                            <div class="card-body">
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field1" value="Trekker1" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field1" value="Bulldozer1" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center" id="player2" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer2" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+                            <div class="card-body">
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field2" value="Trekker2" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field2" value="Bulldozer2" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center" id="player3" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer3" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+                            <div class="card-body">
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field3" value="Trekker3" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field3" value="Bulldozer3" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center" id="player4" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer4" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+                            <div class="card-body">
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field4" value="Trekker4" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field4" value="Bulldozer4" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,6 +143,10 @@
     <script src="js/physi.js"></script>
     <script src="OBJLoader.js"></script>
     <script src="MTLLoader.js"></script>
+    <script src="js/ShowElement.js"></script>
+    <script src="js/HideElement.js"></script>
+    <script src="js/ChangePicture.js"></script>
+    <script src="js/RetrieveSettings.js"></script>
     <script src="js/CameraAnimateScene.js"></script>
     <script src="js/ObjLoaderFunction.js"></script>
     <script src="js/Trekker.js"></script>
@@ -37,7 +159,6 @@
     <script src="js/SumoPlane.js"></script>
     <script src="js/Steen.js"></script>
     <script src="js/SteenObject.js"></script>
-    <!--<script src="js/CircleSkybox.js"></script>-->
     <script src="js/CubeSkybox.js"></script>
     <script src="js/ScoreUpdate.js"></script>
     <script src="js/ObjectArray.js"></script>
