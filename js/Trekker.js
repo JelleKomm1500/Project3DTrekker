@@ -68,12 +68,18 @@
         new THREE.SphereGeometry(6, 40, 40),
         new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: false, opacity: 0 }), 1
     );
+    var CollisionBox8 = new Physijs.SphereMesh(
+        new THREE.SphereGeometry(6, 40, 40),
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: false, opacity: 0 }), 1
+    );
 
     CollisionBox6.position.z = -4;
     CollisionBox7.position.z = -8;
+    CollisionBox8.position.z = 12;
 
     CollisionBox.add(CollisionBox6);
     CollisionBox.add(CollisionBox7);
+    CollisionBox.add(CollisionBox8);
 
     LoadOBJModel("objects/trekker/", "Tractor.obj", "objects/trekker/", "Tractor.mtl", (mesh) => {
         mesh.rotation.set(0, 3.14, 0);

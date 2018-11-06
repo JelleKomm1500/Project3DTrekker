@@ -45,6 +45,7 @@
     
     function hide() {
         document.getElementById("menu").style.overflow = "hidden";
+        window.scrollTo(0, 0);
         var x = document.getElementById("wrapper");
         if (x.style.display === "none") {
             x.style.display = "block";
