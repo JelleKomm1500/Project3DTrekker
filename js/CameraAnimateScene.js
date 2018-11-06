@@ -98,22 +98,24 @@
             var i2 = i * 30;
             car.position.set(i2, 30, i2);      
             scene.add(car);
-            car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
-                var pArray = Powerups.GetArray();
-                for (var i2 = 0; i2 < (pArray.length); i2++) {
-                    if (other_object.id == pArray[i2].GetModel().id) {
-                        var poweruptype = pArray[i2].GetType();
-                        console.log("DEZEEEEEEEEEEEEEEHFHASHF " + this.id);
-                        for (var i = 0; i < (tArray.length); i++) {
-                            if (tArray[i].GetModel().id == this.id) {
-                                tArray[i].ReceivePowerup(poweruptype);
+            if (tArray[i].GetType != "bulldozer") {
+                car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
+                    var pArray = Powerups.GetArray();
+                    for (var i2 = 0; i2 < (pArray.length); i2++) {
+                        if (other_object.id == pArray[i2].GetModel().id) {
+                            var poweruptype = pArray[i2].GetType();
+                            for (var i = 0; i < (tArray.length); i++) {
+                                if (tArray[i].GetModel().id == this.id) {
+                                    tArray[i].ReceivePowerup(poweruptype);
+                                }
                             }
+                            scene.remove(pArray[i2].GetModel());
                         }
-                        scene.remove(pArray[i2].GetModel());
                     }
-                }
-                
-            })
+
+                })
+            }
+            
         
             
         }

@@ -38,6 +38,9 @@
     this.FlipNeeds = function () {
         needspoint = !needspoint;
     }
+    this.GetType = function () {
+        return type;
+    }
     this.GetNeedsPoint = function () {
         return needspoint;
     }
