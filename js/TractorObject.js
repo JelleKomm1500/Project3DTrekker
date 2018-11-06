@@ -1,4 +1,4 @@
-﻿function Trekkerobj(type, name, forward, back, left, right) {
+﻿function TractorObject(type, name, forward, back, left, right) {
 
     this.type = type;
     this.name = name;
@@ -8,30 +8,30 @@
     var speed = 1;
     var backwardspeed = 1;
     var wheelpos = 0;
+    var dead = false;
+    var needsheart = false;
     var car;
     if (type == "tractor") {
-        car = Trekker(name);
+        car = Tractor(name);
         maxspeed = 10;
         accspeed = 1.01;
 
     }
     else if (type == "bulldozer") {
-        car = ZwareTrekker(name);
+        car = Bulldozer(name);
         maxspeed = 8;
         accspeed = 1.008;
 
     }
-    var dead = false;
-    var needspoint = false;
-
+    
     this.FlipNeeds = function () {
-        needspoint = !needspoint;
+        needsheart = !needsheart;
     }
     this.GetType = function () {
         return type;
     }
-    this.GetNeedsPoint = function () {
-        return needspoint;
+    this.GetNeedsHeart = function () {
+        return needsheart;
     }
     this.GetName = function () {
         return name;
@@ -52,24 +52,9 @@
     function GetBackMovespeed() {
         return (backwardspeed - 1);
     }
-    function CalcAngle() {
-        if (speed / 10 <= 0.1) {
-            return 0;
-        }
-        else {
-            var speed2 = speed / 10;
-            if (speed2 >= 1) {
-                return 1.5;
-            }
-            else {
-                return speed2 * 1.5;
-            }
-        }
-    }
-
     
     this.ReceivePowerup = function (type) {
-        if (type == 0) { needspoint=true; }
+        if (type == 0) { needsheart=true; }
         else if (type == 1) { accspeed = accspeed * 2; }
         else if (type == 2) { console.log("dit is een type 2 powerup") }
     }

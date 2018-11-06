@@ -1,15 +1,7 @@
-﻿function ZwareTrekker(spelernaam) {
-    Trekkers = new THREE.Group();
-    //nog cylinderwielen proberen?
+﻿function Bulldozer(playername) {
     var CollisionBox = new Physijs.BoxMesh(
         new THREE.BoxGeometry(45, 10, 10),
         new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
-    );
-
-
-    var CollisionBox2 = new Physijs.CylinderMesh(
-        new THREE.CylinderGeometry(4, 4, 2, 24),
-        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 1
     );
 
     var voorkant = new Physijs.BoxMesh(
@@ -21,23 +13,23 @@
    CollisionBox.add(voorkant);
 
 
-    var achterkant = new Physijs.BoxMesh(
+    var back = new Physijs.BoxMesh(
         new THREE.BoxGeometry(10, 10, 30),
         new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
     );
 
-    achterkant.position.set(0, 0, 35);
-    achterkant.rotation.set(0, 1.57, 0);
-    CollisionBox.add(achterkant);
+    back.position.set(0, 0, 35);
+    back.rotation.set(0, 1.57, 0);
+    CollisionBox.add(back);
 
-    var BinnenKant = new Physijs.CylinderMesh(
+    var inside = new Physijs.CylinderMesh(
         new THREE.CylinderGeometry(20, 20, 20, 50),
         new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 1
     );
 
-    BinnenKant.position.set(0, 0, 10);
+    inside.position.set(0, 0, 10);
 
-    CollisionBox.add(BinnenKant);
+    CollisionBox.add(inside);
 
     LoadOBJModel("objects/bulldozer/", "Bulldozer.obj", "objects/bulldozer/", "Bulldozer.mtl", (mesh) => {
         mesh.rotation.set(0, 1.57, 0);
@@ -46,7 +38,7 @@
         CollisionBox.add(mesh);
     })
 
-    var text = CreatePlayerText(spelernaam);
+    var text = CreatePlayerText(playername);
     text.scale.set(2, 2, 2);
     text.position.set(0, 5, 0);
 

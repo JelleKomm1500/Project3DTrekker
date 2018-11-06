@@ -11,9 +11,9 @@
         }
     }
 
-    else if (type == 'trekker') {
+    else if (type == 'tractor') {
         this.Push = function (type, name, forward, back, left, right) {
-            oArray[count] = new Trekkerobj(type, name, forward, back, left, right);
+            oArray[count] = new TractorObject(type, name, forward, back, left, right);
             count += 1;
         }
     }

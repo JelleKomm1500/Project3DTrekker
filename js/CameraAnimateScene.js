@@ -20,7 +20,7 @@
     }
 
     
-    const Tractors = new ObjectArray("trekker");
+    const Tractors = new ObjectArray("tractor");
 
     for (var i = 0; i < (settingsarray.length); i++) {
         var eendArray = settingsarray[i];
@@ -185,7 +185,7 @@
                 var car = tArray[i];
                 if ((car.CheckAlive())) {
                     car.Controls(keyboard);
-                    if (car.GetNeedsPoint()) {
+                    if (car.GetNeedsHeart()) {
                         car.FlipNeeds();
                         Scorebord.GiveLife(car.GetName());
                     }

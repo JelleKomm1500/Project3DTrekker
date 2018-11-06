@@ -1,22 +1,20 @@
-﻿function Trekker(spelernaam) {
-    Trekkers = new THREE.Group();
-    //nog cylinderwielen proberen?
+﻿function Tractor(playername) {
     var CollisionBox = new Physijs.SphereMesh(
         new THREE.SphereGeometry(6, 40, 40),
-        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
     );
 
 
     var CollisionBox2 = new Physijs.CylinderMesh(
         new THREE.CylinderGeometry (4, 4, 2 , 24),
-        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 1
     );
 
     CollisionBox2.rotation.set(0, 0, 1.57);
 
     var CollisionBox3 = new Physijs.CylinderMesh(
         new THREE.CylinderGeometry(4, 4, 2, 24),
-        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 1
     );
 
     CollisionBox3.rotation.set(0, 0, 1.57);
@@ -36,12 +34,12 @@
 
     var CollisionBox4 = new Physijs.CylinderMesh(
         new THREE.CylinderGeometry(8,8, 4, 24),
-        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 1
     );
 
     var CollisionBox5 = new Physijs.CylinderMesh(
         new THREE.CylinderGeometry(8, 8, 4, 24),
-        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 1
     );
 
     CollisionBox4.position.y = -0.8;
@@ -61,16 +59,16 @@
 
     var CollisionBox6 = new Physijs.SphereMesh(
         new THREE.SphereGeometry(6, 40, 40),
-        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
     );
 
     var CollisionBox7 = new Physijs.SphereMesh(
         new THREE.SphereGeometry(6, 40, 40),
-        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
     );
     var CollisionBox8 = new Physijs.SphereMesh(
         new THREE.SphereGeometry(6, 40, 40),
-        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: false, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
     );
 
     CollisionBox6.position.z = -4;
@@ -88,7 +86,7 @@
         CollisionBox.add(mesh);
     })
 
-    var text = CreatePlayerText(spelernaam);
+    var text = CreatePlayerText(playername);
 
     CollisionBox.add(text);
     CollisionBox.scale.set(1, 1, 1);
