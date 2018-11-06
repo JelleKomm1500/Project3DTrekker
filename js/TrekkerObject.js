@@ -87,12 +87,7 @@
         var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
         var forceVector = new THREE.Vector3(0, 0, 0);
 
-        //car.__dirtyPosition = true;
-        if (car.position.x >= 350 || car.position.x <= - 280 || car.position.z >= 180 || car.position.z <= -220) {
 
-            speed = 0;
-            backwardspeed = 0;
-        }
 
         console.log(car.position.y);
 
