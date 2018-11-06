@@ -22,7 +22,8 @@
     
     const Trekkers = new ObjectArray("trekker");
     Trekkers.Push("snel", "Speler1", "W", "A", "D", "S");
-    Trekkers.Push("snel", "Speler2", "U", "H", "K", "J");
+   // Trekkers.Push("snel", "Speler2", "U", "H", "K", "J");
+    Trekkers.Push("zwaar", "Speler3", "U", "H", "K", "J");
 
     const Scorebord = new Scoreboard();
     Scorebord.LoadPlayers(Trekkers.GetArray());
@@ -49,7 +50,7 @@
         var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 200000;
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
-        //var controls = new THREE.OrbitControls(camera);
+        var controls = new THREE.OrbitControls(camera);
         camera.position.set(0, 450, 450);
         camera.lookAt(0, 0, 0);
         scene.add(camera);
@@ -113,6 +114,7 @@
         scene.add(ambientLight);
         scene.add(directionalLight);
 
+
         camera.add(Scoreafdruk);
     }
 
@@ -122,16 +124,16 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    function RotsVal() {
+    //function RotsVal() {
 
-        var array = Rotsen.GetArray();
-        var random = Math.floor(Math.random() * array.length);
-        if (array[random].CheckFlying()) {
-            array[random].Fall();
-        }
-        else RotsVal();
+    //    var array = Rotsen.GetArray();
+    //    var random = Math.floor(Math.random() * array.length);
+    //    if (array[random].CheckFlying()) {
+    //        array[random].Fall();
+    //    }
+    //    else RotsVal();
         
-    }
+    //}
 
     function FindRots() {
 
