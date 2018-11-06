@@ -159,11 +159,12 @@
                 camera.add(Scoremodel);
                 timersecs += 1;
 
-                if (roundedtimer % 10 === 0) {
+                var Chance = Math.floor(Math.random() * 10) + 1;
+                if (Chance ==2) {
                     RotsFall();
                 }
 
-                if (roundedtimer % 30 === 0) {
+                if (Chance== 3) {
                     var random = Math.floor(Math.random() * 2);
                     Powerups.Push(random);
                     var parray = Powerups.GetArray();

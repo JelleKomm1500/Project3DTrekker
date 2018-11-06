@@ -23,18 +23,7 @@
     }
     var dead = false;
     var needspoint = false;
-    //var otherCars;
-    //var lastTouchedBy;
 
-
-    
-    //this.GetTouched = function () {
-    //    return lastTouchedBy;
-    //}
-
-    //this.loadOthers = function (trekkers) {
-    //    otherCars = trekkers;
-    //}
     this.FlipNeeds = function () {
         needspoint = !needspoint;
     }
