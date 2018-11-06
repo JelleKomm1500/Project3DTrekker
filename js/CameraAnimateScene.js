@@ -1,6 +1,5 @@
 ﻿function StartGame(settingsarray) {
     'use strict';
-    console.log(settingsarray);
     Physijs.scripts.worker = 'js/physijs_worker.js';
     Physijs.scripts.ammo = 'ammo.js';
     var initScene, render, renderer, scene, camera, box, floor, conrtols, stats;
@@ -23,8 +22,18 @@
 
     
     const Trekkers = new ObjectArray("trekker");
-    Trekkers.Push("snel", "Speler1", "W", "S", "A", "D");
-    Trekkers.Push("zwaar", "Speler2", "U", "J", "H", "K");
+    //Trekkers.Push("snel", "Speler1", "W", "S", "A", "D");
+    //Trekkers.Push("zwaar", "Speler2", "U", "J", "H", "K");
+
+    for (var i = 0; i < (settingsarray.length); i++) {
+        var eendArray = settingsarray[i];
+        
+        if (!(eendArray[4] == "")) {
+            console.log(eendArray);
+            Trekkers.Push(eendArray[0], eendArray[1], eendArray[2], eendArray[3], eendArray[4], eendArray[5]);    
+        }
+           
+    }
 
     const Scorebord = new Scoreboard();
     Scorebord.LoadPlayers(Trekkers.GetArray());

@@ -9,13 +9,13 @@
     var backwardspeed = 1;
     var testklokkie = 0;
     var car;
-    if (type == "snel") {
+    if (type == "tractor") {
         car = Trekker(name);
         maxspeed = 10;
         accspeed = 1.01;
 
     }
-    else if (type == "zwaar") {
+    else if (type == "bulldozer") {
         car = ZwareTrekker(name);
         maxspeed = 8;
         accspeed = 1.008;

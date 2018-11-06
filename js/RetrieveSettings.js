@@ -16,7 +16,7 @@
             x = "bulldozer";
         }
 
-        var arr = [x, playername[i], accelerate[i], brake[i], left[i], right[i]];
+        var arr = [x, playername[i].value, accelerate[i].value, brake[i].value, left[i].value, right[i].value];
         arrPlayerSettings.push(arr);
     }
 
