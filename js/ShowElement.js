@@ -16,18 +16,6 @@ function showPlay() {
     }
 }
 
-function showMenu1Player() {
-    var play = document.getElementById("playGame");
-    var i = document.getElementById("player1");
-
-    i.setAttribute("class", "col-md-12 text-center");
-
-    if (i.style.display === "none") {
-        play.style.display = "block";
-        i.style.display = "block";
-    } 
-}
-
 function showMenu2Player() {
     var play = document.getElementById("playGame");
     var i = document.getElementById("player1");
