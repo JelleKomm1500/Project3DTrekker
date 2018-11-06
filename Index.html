@@ -17,64 +17,121 @@
                     <h1 class="title">TREKKER WRECKER</h1>
                     <div class="menuButtons" id="menuButtons">
                         <ul>
-                            <li class="btnList"><p class="button5 hvr-bob" id="local" onclick="hideElem(), showElem()">Start Game</p></li>
-                            <li class="btnList"><p class="button5 hvr-bob" id="startGame">Multiplayer</p></li>
+                            <li class="btnList"><p class="button5 hvr-bob" id="local" onclick="hideElem(), showPlay()">Start Game</p></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="customPlayer" class="container" style="display: none">
+        <div id="choosePlayers" class="container" style="display: none">
             <div class="col-12 text-center">
-                <p class="button5 hvr-bob btnList">Start Game</p>
+                <ul>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu1Player()">Een speler</p></li>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu2Player()">Twee spelers</p></li>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu3Player()">Drie spelers</p></li>
+                    <li class="plrList"><p class="button5 hvr-bob" onclick="hidePlay(), showMenu4Player()">Vier spelers</p></li>
+                </ul>
             </div>
-            <div class="card-group" id="addPlayerCard">
-                <div class="row" id="playerClass">
-                    <div class="col-sm-3 text-center">
-                        <div class="card" style="width: 16rem; margin-right: 20px; margin-bottom: 20px; margin-top: 20px;">
-                            <img class="card-img-top" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+        </div>
+        <div id="customPlayer" class="container">
+            <div class="col-md-12 text-center" style="display: none" id="playGame">
+                <p class="button5 hvr-bob btnList" onclick="RetrieveSettings()" id="startGame">Start Game</p>
+            </div>
+            <div class="card-group">
+                <div class="row">
+                    <div class="col-md-3 text-center" id="player1" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer1" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
                             <div class="card-body">
-                                <label class="radio-inline"><input type="radio" id="radioP1" name="radioP1" checked>  Trekker 1</label>
-                                <label class="radio-inline"><input type="radio" id="radioP1" name="radioP1">  Trekker 2</label>
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field1" value="Trekker1" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field1" value="Bulldozer1" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="card" style="width: 16rem; margin-right: 20px; margin-bottom: 20px; margin-top: 20px;">
-                            <img class="card-img-top" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+                    <div class="col-md-3 text-center" id="player2" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer2" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
                             <div class="card-body">
-                                <label class="radio-inline"><input type="radio" id="radioP2" name="radioP2" checked>  Trekker 1</label>
-                                <label class="radio-inline"><input type="radio" id="radioP2" name="radioP2">  Trekker 2</label>
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field2" value="Trekker2" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field2" value="Bulldozer2" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="card" style="width: 16rem; margin-right: 20px; margin-bottom: 20px; margin-top: 20px;">
-                            <img class="card-img-top" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+                    <div class="col-md-3 text-center" id="player3" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer3" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
                             <div class="card-body">
-                                <label class="radio-inline"><input type="radio" id="radioP3" name="radioP3" checked>  Trekker 1</label>
-                                <label class="radio-inline"><input type="radio" id="radioP3" name="radioP3">  Trekker 2</label>
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field3" value="Trekker3" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field3" value="Bulldozer3" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="card" style="width: 16rem; margin-right: 20px; margin-bottom: 20px; margin-top: 20px;">
-                            <img class="card-img-top" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
+                    <div class="col-md-3 text-center" id="player4" style="display: none">
+                        <div class="card card-custom">
+                            <img class="card-img-top" id="imagePlayer4" style="height: 250px; width: 100%;" src="img/Select Picture/Trekker.PNG" alt="Card image cap">
                             <div class="card-body">
-                                <label class="radio-inline"><input type="radio" id="radioP4" name="radioP4" checked>  Trekker 1</label>
-                                <label class="radio-inline"><input type="radio" id="radioP4" name="radioP4">  Trekker 2</label>
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="form-group" id="form">
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field4" value="Trekker4" onclick="check_value(this.value)" checked>  Trekker</label>
+                                    <label class="radio-inline"><input class="vehicle" type="radio" name="field4" value="Bulldozer4" onclick="check_value(this.value)">  Bulldozer</label>
+                                    <h5 class="card-title">Choose Tractor</h5>
+                                    <label for="formGroupExampleInput2">Choose Name</label>
+                                    <input class="form-control inputfield playername" type="text" id="name">
+                                    <div class="inputfieldsmall">
+                                        <label for="formGroupExampleInput2">Accelerate</label>
+                                        <input class="form-control accelerate" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Brake</label>
+                                        <input class="form-control brake" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Left</label>
+                                        <input class="form-control left" type="text" id="nickname" name="nickname">
+                                        <label for="formGroupExampleInput2">Right</label>
+                                        <input class="form-control right" type="text" id="nickname" name="nickname">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -88,6 +145,8 @@
     <script src="MTLLoader.js"></script>
     <script src="js/ShowElement.js"></script>
     <script src="js/HideElement.js"></script>
+    <script src="js/ChangePicture.js"></script>
+    <script src="js/RetrieveSettings.js"></script>
     <script src="js/CameraAnimateScene.js"></script>
     <script src="js/ObjLoaderFunction.js"></script>
     <script src="js/Trekker.js"></script>

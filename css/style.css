@@ -14,6 +14,17 @@ body {
     background: url(../img/achtergrond.jpg) no-repeat center center fixed;
     background-size: cover;
 }
+.inputfield {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.inputfieldsmall {
+    margin-bottom: 5px;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
 
 .title {
     padding-top: 125px;
@@ -26,41 +37,16 @@ ul {
     list-style-type: none;
 }
 
-.btnList{
+.card-custom {
+    display: none;
+    width: 16rem; 
+    margin-right: 20px; 
+    margin-bottom: 20px; 
+    margin-top: 20px;
+}
+
+.btnList {
     padding: 10px;
-}
-
-.plus-position {
-    position: absolute; 
-    top: 8px; 
-    right: 16px; 
-    font-size: 18px;
-    color: white;
-}
-
-    .plus-position:hover {
-        text-shadow: 0 0 2em rgba(255,255,255,1);
-        color: grey;
-        border-color: #000000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-.minus-position {
-    display: block;
-    position: absolute;
-    top: 8px;
-    left: 16px;
-    font-size: 18px;
-    color: white;
-}
-
-.minus-position:hover {
-    text-shadow: 0 0 2em rgba(255,255,255,1);
-    color: grey;
-    border-color: #000000;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 p.button5 {
