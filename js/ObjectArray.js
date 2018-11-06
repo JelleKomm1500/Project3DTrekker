@@ -4,9 +4,9 @@
     var count = 0;
     var oArray = new Array();
 
-    if (type == 'rots') {
+    if (type == 'rock') {
         this.Push = function (x, y, z) {
-            oArray[count] = new SteenObject(x, y, z);
+            oArray[count] = new RockObject(x, y, z);
             count += 1;
         }
     }

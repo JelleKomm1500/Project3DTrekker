@@ -4,10 +4,8 @@
     this.GetModel = function ()
     {
         return PowerBox;
-
     }
     this.GetType = function () {
         return type;
-
     }
 }

@@ -7,7 +7,7 @@
     var clock = new THREE.Clock();
     var speed = 1;
     var backwardspeed = 1;
-    var testklokkie = 0;
+    var wheelpos = 0;
     var car;
     if (type == "tractor") {
         car = Trekker(name);
@@ -98,44 +98,34 @@
         }
 
         if (speed > 1) {
-            //car.translateZ(-moveDistance * GetMovespeed());
-          
-            //var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
-            //var force_vector = new THREE.Vector3(0, 0, (GetMovespeed() * -1)).applyMatrix4(rotation_matrix);
-            //car.applyCentralImpulse(force_vector);
-
             var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
             var force_vector = new THREE.Vector3(0, 0, GetMovespeed() * -10).applyMatrix4(rotation_matrix);
             car.setLinearVelocity(force_vector);
 
 
-            var klokkie2 = testklokkie;
+            var wheelpos2 = wheelpos;
             if (GetMovespeed() < 1) {
-                klokkie2 = testklokkie * (GetMovespeed());
+                wheelpos2 = wheelpos * (GetMovespeed());
             }            
 
             speed = speed * 0.996;
 
-            var force_vector = new THREE.Vector3(0, klokkie2, 0).applyMatrix4(rotation_matrix);
+            var force_vector = new THREE.Vector3(0, wheelpos2, 0).applyMatrix4(rotation_matrix);
             car.setAngularVelocity(force_vector);
 
         }
         if (backwardspeed > 1) {
-            //car.translateZ(moveDistance * GetBackMovespeed());
-            //car.__dirtyPosition = true;
             var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
             var force_vector = new THREE.Vector3(0, 0, GetBackMovespeed() * 10).applyMatrix4(rotation_matrix);
             car.setLinearVelocity(force_vector);
 
-            var klokkie2 = testklokkie;
+            var wheelpos2 = wheelpos;
             if (GetBackMovespeed() < 1) {
-                klokkie2 = testklokkie * (GetBackMovespeed());
+                wheelpos2 = wheelpos * (GetBackMovespeed());
             }     
 
-            //car.rotateOnAxis(new THREE.Vector3(0, testklokkie, 0), rotateAngle);
             speed = speed * 0.996;
-            //car.__dirtyRotation = true;
-            var force_vector = new THREE.Vector3(0, klokkie2, 0).applyMatrix4(rotation_matrix);
+            var force_vector = new THREE.Vector3(0, wheelpos2, 0).applyMatrix4(rotation_matrix);
             car.setAngularVelocity(force_vector);
 
 
@@ -167,25 +157,23 @@
             backwardspeed = backwardspeed * 0.99;
         }
 
-        // rotate left/right/up/down
         if (keyboard.pressed(left)) {
-            if (testklokkie < 1) {
-                testklokkie += 0.1;
+            if (wheelpos < 1) {
+                wheelpos += 0.1;
             }
         }
-
 
         else if (keyboard.pressed(right)) {
-            if (testklokkie > -1) {
-                testklokkie -= 0.1;
+            if (wheelpos > -1) {
+                wheelpos -= 0.1;
             }
         }
 
-        else if (testklokkie < 0) {
-            testklokkie += 0.1;
+        else if (wheelpos < 0) {
+            wheelpos += 0.1;
         }
-        else if (testklokkie > 0) {
-            testklokkie -= 0.1;
+        else if (wheelpos > 0) {
+            wheelpos -= 0.1;
         }
 
 

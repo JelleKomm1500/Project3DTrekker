@@ -1,4 +1,4 @@
-﻿function rotsfunctie(x, y, z) {
+﻿function rockfunction(x, y, z) {
     var cubeMaterials = [
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/rock.jpg"), side: THREE.DoubleSide }), //LEFT
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/rock.jpg"), side: THREE.DoubleSide }), //RIGHT

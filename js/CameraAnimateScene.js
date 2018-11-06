@@ -11,7 +11,7 @@
     var timersecs = 0;
     var endtimersecs = 0;
     const Powerups = new ObjectArray("powerup");
-    const Rocks = new ObjectArray("rots");
+    const Rocks = new ObjectArray("rock");
 
     for (var i = 150; i > -240; i-=60) {
         for (var i2 = 5; i2 > -5; i2--) {
