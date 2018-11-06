@@ -88,7 +88,7 @@
             var i2 = i * 30;
             car.position.set(i2, 30, i2);      
             scene.add(car);
-            car.addEventListener('collision', function ( other_object, linear_velocity, angular_velocity) {
+            car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
                 var pArray = Powerups.GetArray();
                 for (var i2 = 0; i2 < (pArray.length); i2++) {
                     if (other_object.id == pArray[i2].GetModel().id) {
@@ -218,6 +218,20 @@
                     }
                 }
             }
+                if (((car.GetModel().position.y) < -100) && (car.CheckAlive())) {
+                    var lives = Scorebord.UpdateScore(car.GetName());
+                    if (lives > 0) {
+                        var test150 = FindRots();
+                        (car.GetModel()).position.set(test150[0], test150[1], test150[2]);
+                        (car.GetModel()).__dirtyPosition = true;
+                    }
+                    else {
+                        car.Die();
+                    }
+
+
+                }
+            
         }
         else {
             if (!ending2) {

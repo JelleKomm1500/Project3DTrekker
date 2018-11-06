@@ -13,16 +13,28 @@
         car = Trekker(name);
         maxspeed = 10;
         accspeed = 1.01;
+
     }
     else if (type == "zwaar") {
         car = ZwareTrekker(name);
         maxspeed = 8;
         accspeed = 1.008;
+
     }
     var dead = false;
     var needspoint = false;
-    var colliding = false;
+    //var otherCars;
+    //var lastTouchedBy;
 
+
+    
+    //this.GetTouched = function () {
+    //    return lastTouchedBy;
+    //}
+
+    //this.loadOthers = function (trekkers) {
+    //    otherCars = trekkers;
+    //}
     this.FlipNeeds = function () {
         needspoint = !needspoint;
     }
@@ -63,6 +75,7 @@
         }
     }
 
+    
     this.ReceivePowerup = function (type) {
         if (type == 0) { needspoint=true; }
         else if (type == 1) { accspeed = accspeed * 2; }
@@ -74,8 +87,27 @@
         var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
         var forceVector = new THREE.Vector3(0, 0, 0);
 
+        //car.__dirtyPosition = true;
+        if (car.position.x >= 350 || car.position.x <= - 280) {
+
+            speed = 0;
+            backwardspeed = 0;
+        }
+
+        console.log(car.position.y);
+
+        if (car.position.y < 27) {
+
+            speed = 0;
+            backwardspeed = 0;
+        }
+
         if (speed > 1) {
-            
+            //car.translateZ(-moveDistance * GetMovespeed());
+          
+            //var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
+            //var force_vector = new THREE.Vector3(0, 0, (GetMovespeed() * -1)).applyMatrix4(rotation_matrix);
+            //car.applyCentralImpulse(force_vector);
 
             var rotation_matrix = new THREE.Matrix4().extractRotation(car.matrix);
             var force_vector = new THREE.Vector3(0, 0, GetMovespeed() * -10).applyMatrix4(rotation_matrix);
