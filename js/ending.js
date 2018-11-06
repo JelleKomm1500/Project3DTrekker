@@ -1,23 +1,26 @@
-﻿function Ending(winner) {
+﻿/**
+ * Bouwt een THREE.Group op bestaande uit meshes van de regels. Deze regels geven aan wie er heeft gewonnen en wat er hierna gaat gebeuren.
+ * Dit werkt met de THREE.FontLoader.
+ * @param {string} winner De naam van de winnaar.
+ * @returns {THREE.Group} Een group met de meshes van de regels.
+ */ 
+function Ending(winner) {
 
     var scoregroep = new THREE.Group();
     var scoreboardstring;
-    if (winner == "gelijk spel") { scoreboardstring = "Gelijk spel."; }
-    else { scoreboardstring = winner + " heeft gewonnen! ";}   
+    scoreboardstring = winner + " heeft gewonnen! ";
     var timestring = "Na 10 seconden word je teruggestuurd naar het hoofdmenu."
         var loader = new THREE.FontLoader();
         loader.load('fonts/CloseAndOpen.js', function (font) {
             var textMaterial = new THREE.MeshPhongMaterial(
                 { color: ("rgb(255, 221, 0)"), specular: 0xffffff }
             );
-
             var regel1Geometry = new THREE.TextGeometry(scoreboardstring, {
                 font: font,
                 size: 20,
                 height: 0.2,
                 curveSegments: 12,
             });
-
             var regel2Geometry = new THREE.TextGeometry(timestring, {
                 font: font,
                 size: 20,

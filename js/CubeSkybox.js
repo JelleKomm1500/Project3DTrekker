@@ -1,4 +1,8 @@
-﻿function CubeSkybox() {
+﻿/**
+ * Maakt een vierkante skybox en returned deze.
+ * @returns {THREE.Mesh(geometry, CubeMaterial)} [Een grote vierkante skybox.]
+ * */
+function CubeSkybox() {
     var geometry = new THREE.CubeGeometry(10000, 10000, 10000);
     var CubeMaterials =
         [

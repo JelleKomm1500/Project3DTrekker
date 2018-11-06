@@ -1,4 +1,10 @@
-﻿function RetrieveSettings() {
+﻿/**
+ * Haalt het type wagen, de naam en de controls per speler op uit de form in index. 
+ * Deze worden in een array gepusht, waarna de array per persoon weer in andere array wordt gepusht. 
+ * Dit maakt een 2d array met alle informatie per speler, die weer wordt gereturned.
+ *@return {array} Returned een 2d array met informatie per spel, zodat het in een andere file gebruikt kan worden.
+ */
+function RetrieveSettings() {
     var arrPlayerSettings = new Array();
     var vehicle = document.querySelectorAll(".vehicle:checked");
     var playername = document.querySelectorAll(".playername");

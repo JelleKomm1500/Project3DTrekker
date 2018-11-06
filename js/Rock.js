@@ -1,4 +1,11 @@
-﻿function rockfunction(x, y, z) {
+﻿/**
+ * Maakt een box met physics en de rock texture op meegegeven coördinaten.
+ * @param {number} x De x coördinaat.
+ * @param {number} y De y coördinaat.
+ * @param {number} z De z coördinaat.
+ * @returns {Physijs.BoxMesh} De physijsmesh en de visuele representatie.
+ */
+function rockfunction(x, y, z) {
     var cubeMaterials = [
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/rock.jpg"), side: THREE.DoubleSide }), //LEFT
         new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("img/textures/rock.jpg"), side: THREE.DoubleSide }), //RIGHT

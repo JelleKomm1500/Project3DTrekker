@@ -1,4 +1,9 @@
-﻿function check_value(value) {
+﻿/**
+ * Verander de afbeelding op het player menu op basis van de radio input, waarna aan hand van een case de afbeelding per speler bepaald wordt.
+ * 
+ * @param {string} value De waarde van de input van de radio knop
+ */
+function check_value(value) {
     var x = value;
     switch (x) {
         case "Trekker1":

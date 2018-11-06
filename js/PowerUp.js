@@ -1,16 +1,17 @@
-﻿function PowerBoxFunctie(type) {
+﻿/**
+ * Maakt de powerupbox aan zodat het powerupobject deze kan beheren.
+ * @param {string} type Een string die bepaald welke texture de box gebruikt.
+ * @returns {Physijs.BoxMesh} Returned de box met physics.
+ */
+function PowerBoxFunctie(type) {
 
     var texturepath;
 
     if (type == 0) {
-
         texturepath = "img/textures/crateLife.png";
-
     }
     else if (type == 1) {
-
         texturepath = "img/textures/crateSpeed.png";
-
     }
 
     var cubeMaterials = [

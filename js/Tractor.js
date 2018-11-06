@@ -1,4 +1,10 @@
-﻿function Tractor(playername) {
+﻿/**
+ *Deze functie bouwt de hitbox van de tractor op. Ook laadt hij de bijpassende obj in en voegt hij deze toe aan de hitbox. 
+ * @param {string} playername De naam van de speler die deze tractor bestuurt.
+ * Deze naam word via de CreatePlayerText functie boven de tractor gezet.
+ * @returns {Physijs.BoxMesh} Alle hitboxen, de obj en de playertext toegevoegd aan CollisionBox.
+ */
+function Tractor(playername) {
     var CollisionBox = new Physijs.SphereMesh(
         new THREE.SphereGeometry(6, 40, 40),
         new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1

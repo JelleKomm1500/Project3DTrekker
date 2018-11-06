@@ -1,13 +1,8 @@
-﻿function showElem() {
-    var x = document.getElementById("customPlayer");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function showPlay() {
+﻿/**
+ * Laat het menu zien, waarna je het aantal players kunt kiezen.
+ *
+ */
+function ShowPlay() {
     var x = document.getElementById("choosePlayers");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -15,8 +10,11 @@ function showPlay() {
         x.style.display = "none";
     }
 }
-
-function showMenu2Player() {
+/**
+ * Laat het menu zien, waarmee je de naam, controls kunt kiezen voor twee spelers
+ *
+ */
+function ShowMenu2Player() {
     var play = document.getElementById("playGame");
     var i = document.getElementById("player1");
     var j = document.getElementById("player2");
@@ -30,8 +28,11 @@ function showMenu2Player() {
         j.style.display = "block";
     } 
 }
-
-function showMenu3Player() {
+/**
+ * Laat het menu zien, waarmee je de naam, controls kunt kiezen voor drie spelers
+ *
+ */
+function ShowMenu3Player() {
     var play = document.getElementById("playGame");
     var i = document.getElementById("player1");
     var j = document.getElementById("player2");
@@ -47,8 +48,11 @@ function showMenu3Player() {
         k.style.display = "block";
     }
 }
-
-function showMenu4Player() {
+/**
+ * Laat het menu zien, waarmee je de naam, controls kunt kiezen voor vier spelers
+ *
+ */
+function ShowMenu4Player() {
     var play = document.getElementById("playGame");
     var i = document.getElementById("player1");
     var j = document.getElementById("player2");
