@@ -1,4 +1,10 @@
-﻿function CreatePlayerText(naam) {
+﻿/**
+ * Deze functie checkt krijgt als parameter een naam en maakt op basis daarvan een textgeometry.
+ * @param {string} naam Deze string wordt als text gebruikt in de TextGeometry.
+ * @returns [THREE.JS Group] Returned een 3D Object Group.
+ */
+
+function CreatePlayerText(naam) {
     var loader = new THREE.FontLoader();
     var groep = new THREE.Group();
 

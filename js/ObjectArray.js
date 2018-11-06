@@ -1,4 +1,10 @@
-﻿function ObjectArray(type)
+﻿/**
+ * ObjectArray is een object dat een array bijhoudt van andere objecten. Op basis van de string type word de Push functie aangepast zodat de array het goede type objecten opslaat.
+ * @param {string} type Het type van het object, rock, tractor of powerup.
+ * @returns {oArray} Returned de array.
+
+ */
+function ObjectArray(type)
 {
     this.type = type;
     var count = 0;
