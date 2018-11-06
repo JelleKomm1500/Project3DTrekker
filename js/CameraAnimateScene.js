@@ -81,14 +81,14 @@ function StartGame(settingsarray) {
             rArray[i].Fly();
         }
 
-        //Spawned de tractors in en zorgt dat ze geen powerups kunnen op pakken als ze het type 'bulldozer' hebben.
+        //Spawned de tractors in en zorgt dat ze alleen powerups kunnen op pakken als ze het type 'tractor' hebben.
         var tArray = Tractors.GetArray();
         for (var i = 0; i < (tArray.length); i++) {
             var car = tArray[i].GetModel();
             var i2 = i * 30;
             car.position.set(i2, 30, i2);      
             scene.add(car);
-            if (tArray[i].GetType != "bulldozer") {
+            if (tArray[i].GetType() == "tractor") {
                 car.addEventListener('collision', function (other_object, linear_velocity, angular_velocity) {
                     var pArray = Powerups.GetArray();
                     for (var i2 = 0; i2 < (pArray.length); i2++) {
