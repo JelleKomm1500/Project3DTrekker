@@ -20,18 +20,19 @@ function TractorObject(type, name, forward, back, left, right) {
     var wheelpos = 0;
     var dead = false;
     var needsheart = false;
+    var speedboost = 1;
     var car;
 
     //Vult variabelen in op basis van het meegegeven type.
     if (type == "tractor") {
         car = Tractor(name);
         maxspeed = 10;
-        accspeed = 1.01;
+        accspeed = 1.02;
     }
     else if (type == "bulldozer") {
         car = Bulldozer(name);
         maxspeed = 8;
-        accspeed = 1.008;
+        accspeed = 1.01;
     }
 
     //Verandert de bool needsheart.
@@ -66,8 +67,8 @@ function TractorObject(type, name, forward, back, left, right) {
 
     //Verandert variabelen van de tractor op basis van het type powerup.
     this.ReceivePowerup = function (type) {
-        if (type == 0) { needsheart=true; }
-        else if (type == 1) { accspeed = accspeed * 2; }
+        if (type == 0) { needsheart = true; }
+        else if (type == 1) { speedboost = 2.0; }
     }
 
     //Zet de auto weer normaal neer bij het respawnen.
@@ -127,19 +128,25 @@ function TractorObject(type, name, forward, back, left, right) {
             car.setAngularVelocity(force_vector);
         }
 
-        //Verhoogt je vooruit snelheid en verlaagt achteruitsnelheid als je naar voren wil bewegen.
+        //Verhoogt je vooruit snelheid en verlaagt achteruitsnelheid als je naar voren wil bewegen. Apply'd ook de speedboost powerup als je die hebt.
+        //Geeft ook een kleine speedboost bij het "opstarten" voor gameplay redenen.
         if (keyboard.pressed(forward)) {
             if (backwardspeed > 1) {
                 backwardspeed = backwardspeed * 0.98;
             }
             if (!(speed > maxspeed)) {
-                speed = speed * accspeed;
+                if (speed < 1.5) {
+                    speed = speed * ((accspeed * 1.5) * speedboost);
+                }
+
+                speed = speed * (accspeed * speedboost);
             }
         }
 
-        //Verlaagt je speed als je geen gas geeft.
+        //Verlaagt je speed en speedboost als je geen gas geeft.
         else if (speed > 1) {
             speed = speed * 0.98;
+            if (speedboost > 1) { speedboost -= 0.05; }
         }
 
         //Verlaagt je speed en verhoogt je backwardspeed als je achteruit wil.

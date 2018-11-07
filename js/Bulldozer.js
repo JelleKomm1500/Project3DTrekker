@@ -7,39 +7,39 @@
 function Bulldozer(playername) {
     var collisionbox = new Physijs.BoxMesh(
         new THREE.BoxGeometry(45, 10, 10),
-        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 100
     );
 
-    var voorkant = new Physijs.BoxMesh(
+    var front = new Physijs.BoxMesh(
         new THREE.BoxGeometry(10, 10, 30),
-        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 100
     );
-    voorkant.position.set(0, 0, -15);
-    voorkant.rotation.set(0, 1.57, 0);
-    collisionbox.add(voorkant);
+    front.position.set(0, 0, -30);
+    front.rotation.set(0, 1.57, 0);
+    collisionbox.add(front);
 
 
     var back = new Physijs.BoxMesh(
         new THREE.BoxGeometry(10, 10, 30),
-        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa7f442, transparent: true, opacity: 0 }), 100
     );
 
-    back.position.set(0, 0, 35);
+    back.position.set(0, 0, 20);
     back.rotation.set(0, 1.57, 0);
     collisionbox.add(back);
 
     var inside = new Physijs.CylinderMesh(
         new THREE.CylinderGeometry(20, 20, 20, 50),
-        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 1
+        new THREE.MeshBasicMaterial({ color: 0xa3272, transparent: true, opacity: 0 }), 100
     );
 
-    inside.position.set(0, 0, 10);
+    inside.position.set(0, -1, 0);
 
     collisionbox.add(inside);
 
     LoadOBJModel("objects/bulldozer/", "Bulldozer.obj", "objects/bulldozer/", "Bulldozer.mtl", (mesh) => {
         mesh.rotation.set(0, 1.57, 0);
-        mesh.position.set(0, 5, 0);
+        mesh.position.set(0, 15, -10);
         mesh.scale.set(0.2, 0.2, 0.2);
         collisionbox.add(mesh);
     })
