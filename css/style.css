@@ -48,6 +48,10 @@ ul {
     padding: 10px;
 }
 
+.accelerate, .brake, .left, .right {
+    text-align: center;
+}
+
 p.button5 {
     padding: 0.46em 1.6em;
     text-align: center;
