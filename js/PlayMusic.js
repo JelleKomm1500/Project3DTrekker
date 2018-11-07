@@ -1,5 +1,9 @@
 ﻿var audio = new Audio("music/Johnny_Cash_-_General_Lee.mp3");
 
+/**
+ *Zet de muziek aan en hide het mute icoon en laat de play icon zien
+ *
+ */
 function PlayMusic() {
     var x = document.getElementById("play");
     var y = document.getElementById("mute");
@@ -12,10 +16,15 @@ function PlayMusic() {
         y.style.display = "block";
     }
 
+    //speelt de audio variable af
     audio.play();
 
 }
 
+/**
+ * Deze functie is voor het hoofdmenu. 
+ * Pauzeert de muzie en showt de mute button en hide de play button
+ */
 function StopMusic() {
     var x = document.getElementById("play");
     var y = document.getElementById("mute");
@@ -30,6 +39,10 @@ function StopMusic() {
     audio.pause();
 }
 
+/**
+ * Als de game start wordt de muziek gestopt.
+ *  De mute en play button worden verborgen.
+ */
 function PauseMusic() {
     var x = document.getElementById("play");
     var y = document.getElementById("mute");
