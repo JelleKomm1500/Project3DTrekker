@@ -11,6 +11,8 @@
 </head>
 <body style="margin:0px;padding:0px;" id="menu">
     <div class="wrapper" id="wrapper">
+        <i class="fas fa-volume-up music-button" id="mute" style="display:none" onclick="StopMusic()"></i>
+        <i class="fas fa-volume-off music-button" id="play" style="display:block" onclick="PlayMusic()"></i>
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
@@ -34,7 +36,7 @@
         </div>
         <div id="customPlayer" class="container">
             <div class="col-md-12 text-center" style="display: none" id="playGame">
-                <p class="button5 hvr-bob btnList" onclick="InputValidation(RetrieveSettings());" id="startGame">Start Game</p>
+                <p class="button5 hvr-bob btnList" onclick="InputValidation(RetrieveSettings()), PauseMusic();" id="startGame">Start Game</p>
             </div>
             <div class="card-group">
                 <div class="row">
@@ -142,6 +144,7 @@
     <script src="js/physi.js"></script>
     <script src="OBJLoader.js"></script>
     <script src="MTLLoader.js"></script>
+    <script src="js/PlayMusic.js"></script>
     <script src="js/ShowElement.js"></script>
     <script src="js/HideElement.js"></script>
     <script src="js/ChangePicture.js"></script>
